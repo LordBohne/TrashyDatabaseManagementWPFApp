@@ -1,0 +1,27 @@
+﻿<Window x:Class="DatabaseManagementUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DatabaseManagementUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Background="#121212">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <!--Text that explains what the programm is-->
+        <TextBlock Grid.Column="1" Grid.Row="0" Text="Simple DMS" FontSize="72" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#939393"/>
+        <!--A button to get into the acutal UI-->
+        <Button Grid.Column="0" Grid.Row="1" Content="Proceed with existing databases" Margin="10" Background="#373737" Foreground="#939393"/>
+        <!--A button that will let the user import another database-->
+        <Button Grid.Column="3" Grid.Row="1" Content="Add new database" Margin="10" Background="#373737" Foreground="#939393"/>
+    </Grid>
+</Window>
