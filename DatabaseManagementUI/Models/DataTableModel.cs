@@ -7,6 +7,7 @@ namespace DatabaseManagementUI.Models
     class DataTableModel
     {
         public string TableName { get; set; }
+        public string DataBaseName {get; set;}
         public List<DataRowModel> dataRows { get; set; }
     }
 }
