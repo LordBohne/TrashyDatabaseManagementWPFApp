@@ -20,5 +20,16 @@ namespace DatabaseManagementUI
 
             Process.Start(processStart);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="processStop"></param>
+        public void ProcessStop(string processStop)
+        {
+            //Simple-DMS\DatabaseManagementUI\XAMPP\mysql_stop.bat
+
+            Process.Start(processStop);
+        }
     }
 }
