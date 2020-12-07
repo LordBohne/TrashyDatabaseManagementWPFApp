@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DatabaseManagementUI
+namespace DatabaseManagementUI.Models
 {
     public class DataFieldModel
     {
