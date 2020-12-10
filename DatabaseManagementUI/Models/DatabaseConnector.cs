@@ -22,13 +22,51 @@ namespace DatabaseManagementUI.Models
             switch (ServerType)
             {
                 case 1:
-                    MySqlConn.ConnectionString = ConnectionString;
-                    MySqlConn.Open();
-                    break;
+                    try
+                    {
+                        MySqlConn.ConnectionString = ConnectionString;
+                        MySqlConn.Open();
+                        break;
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        throw e;
+                    }
+                    
                 default:
                     break;
             }
             
+        }
+        public int ExecuteScript(string Script,string Delimiter=null)
+        {
+            try
+            {
+                MySqlScript sqlScript = new MySqlScript(MySqlConn, Script);
+                if (Delimiter != null)
+                {
+                    sqlScript.Delimiter = Delimiter;
+                }
+                return sqlScript.Execute();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+        }
+        public void Query(string SQL)
+        {
+            try
+            {
+                MySqlCommand sqlCommand = new MySqlCommand(SQL, MySqlConn);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
