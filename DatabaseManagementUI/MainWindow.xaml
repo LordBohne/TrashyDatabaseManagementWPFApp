@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DatabaseManagementUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        x:Name="SimpleDMSMainWindow"
+        Title="Simple DMS" Height="450" Width="800">
     <Grid Background="#121212">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -20,8 +21,8 @@
         <!--Text that explains what the programm is-->
         <TextBlock Grid.Column="1" Grid.Row="0" Text="Simple DMS" FontSize="72" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#939393"/>
         <!--A button to get into the acutal UI-->
-        <Button Grid.Column="0" Grid.Row="1" Content="Proceed with existing databases" Margin="10" Background="pink" Foreground="#939393"/>
-        <!--A button that will let the user import another database-->
-        <Button Grid.Column="3" Grid.Row="1" Content="Add new database" Margin="10" Background="#373737" Foreground="#939393" />
+        <Button x:Name="ExistingDatabase" Grid.Column="0" Grid.Row="1" Content="Proceed with existing databases" Margin="10" Background="pink" Foreground="#939393" Click="ExistingDatabase_Click"/>
+        <!--A button that will let the user import another database--> 
+        <Button x:Name="NewDatabase" Grid.Column="3" Grid.Row="1" Content="Add new database" Margin="10" Background="#373737" Foreground="#939393"/>
     </Grid>
 </Window>
