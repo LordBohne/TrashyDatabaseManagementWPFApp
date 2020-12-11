@@ -8,7 +8,7 @@ namespace DatabaseManagementUI.Models
 {
     public class ConfigHandler
     {
-        public Dictionary<string, bool> Settings = new Dictionary<string, bool>();
+        public string optXAMPPLocation { get; set; }
         public bool ConfigCreate(string ConfigPath)
         {
             try

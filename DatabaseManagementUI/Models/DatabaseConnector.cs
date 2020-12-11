@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Windows;
 using MySql.Data.MySqlClient;
 
 namespace DatabaseManagementUI.Models
@@ -56,11 +60,26 @@ namespace DatabaseManagementUI.Models
             }
             
         }
-        public void Query(string SQL)
+        public async void Query(string SQL)
         {
             try
             {
-                MySqlCommand sqlCommand = new MySqlCommand(SQL, MySqlConn);
+                List<int> StringSymbolLocation = new List<int>();
+                List<int> SemicolonLocation = new List<int>();
+                for (int i = 0; i < SQL.Length; i++)
+                {
+                    if (SQL[i] == '\"' || SQL[i] == '\'' || SQL[i] == '`')
+                    {
+                        StringSymbolLocation.Add(i);
+                    }
+                    else if (SQL[i] == ';')
+                    {
+                        SemicolonLocation.Add(i);
+                    }
+                }
+                // TODO: See if semucolonLocation is between the 2 closed StringSymbolLocations
+                var sqlCommand = new MySqlCommand(SQL, MySqlConn);
+                
             }
             catch (Exception)
             {
