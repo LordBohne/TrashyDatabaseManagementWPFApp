@@ -1,11 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows;
-using MySql.Data.MySqlClient;
 
 namespace DatabaseManagementUI.Models
 {
@@ -83,12 +79,12 @@ namespace DatabaseManagementUI.Models
             {
                 for (int x = 0; x < StringSymbolLocation.Count; x++)
                 {
-                    if (SemicolonLocation[i] !< StringSymbolLocation[x] && firstrun)
+                    if (SemicolonLocation[i]! < StringSymbolLocation[x] && firstrun)
                     {
                         var StringIndexBeforeSemicolon = StringSymbolLocation[x - 1];
                         StringSymbolLocation.RemoveAt(x - 1);
-                        var StringIndexAfterSemicolon = StringSymbolLocation[x-1];
-                        StringSymbolLocation.RemoveAt(x-1);
+                        var StringIndexAfterSemicolon = StringSymbolLocation[x - 1];
+                        StringSymbolLocation.RemoveAt(x - 1);
                         if (SemicolonLocation[i] >= StringIndexBeforeSemicolon && SemicolonLocation[i] <= StringIndexAfterSemicolon)
                         {
                             SemicolonLocationInString.Add(SemicolonLocation[i]);

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DatabaseManagementUI.Models
 {
@@ -10,6 +8,6 @@ namespace DatabaseManagementUI.Models
         public string PrimaryKey { get; set; }
         // The individuel rows of the database
         public List<DataFieldModel> DataRow { get; set; }
-        
+
     }
 }
