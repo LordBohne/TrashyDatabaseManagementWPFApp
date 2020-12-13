@@ -72,7 +72,7 @@ namespace DatabaseManagementUI.Models
                     SemicolonLocation.Add(i);
                 }
             }
-            // TODO: See if semucolonLocation is between the 2 closed StringSymbolLocations
+            // TODO: New Approach this one doesnt work anymore for some reason. Split Stuff in between into substrings and look through those.
             List<int> SemicolonLocationInString = new List<int>();
             bool firstrun = true;
             for (int i = 0; i < SemicolonLocation.Count; i++)
@@ -94,9 +94,9 @@ namespace DatabaseManagementUI.Models
                     else if (SemicolonLocation[i]! < StringSymbolLocation[x])
                     {
                         var StringIndexBeforeSemicolon = StringSymbolLocation[x];
-                        StringSymbolLocation.RemoveAt(x);
+                        //StringSymbolLocation.RemoveAt(x);
                         var StringIndexAfterSemicolon = StringSymbolLocation[x];
-                        StringSymbolLocation.RemoveAt(x);
+                        //StringSymbolLocation.RemoveAt(x);
                         if (SemicolonLocation[i] >= StringIndexBeforeSemicolon && SemicolonLocation[i] <= StringIndexAfterSemicolon)
                         {
                             SemicolonLocationInString.Add(SemicolonLocation[i]);
@@ -104,6 +104,7 @@ namespace DatabaseManagementUI.Models
                     }
                 }
             }
+
             foreach (var item in SemicolonLocationInString)
             {
                 MessageBox.Show(SQL.Substring(item));
