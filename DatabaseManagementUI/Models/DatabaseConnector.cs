@@ -81,24 +81,45 @@ namespace DatabaseManagementUI.Models
                 {
                     if (SemicolonLocation[i]! < StringSymbolLocation[x] && firstrun)
                     {
+                        if (x >=2)
+                        {
+                            x = 1;
+                        }
                         var StringIndexBeforeSemicolon = StringSymbolLocation[x - 1];
-                        StringSymbolLocation.RemoveAt(x - 1);
-                        var StringIndexAfterSemicolon = StringSymbolLocation[x - 1];
-                        StringSymbolLocation.RemoveAt(x - 1);
+                        
+                        var StringIndexAfterSemicolon = StringSymbolLocation[x];
+                        if (SemicolonLocation[0] > StringSymbolLocation[1])
+                        {
+                            StringSymbolLocation.RemoveAt(0);
+                            StringSymbolLocation.RemoveAt(0);
+                        }
                         if (SemicolonLocation[i] >= StringIndexBeforeSemicolon && SemicolonLocation[i] <= StringIndexAfterSemicolon)
                         {
+                            StringSymbolLocation.RemoveAt(x - 1);
+                            StringSymbolLocation.RemoveAt(x - 1);
                             SemicolonLocationInString.Add(SemicolonLocation[i]);
                         }
                         firstrun = false;
                     }
                     else if (SemicolonLocation[i]! < StringSymbolLocation[x])
                     {
-                        var StringIndexBeforeSemicolon = StringSymbolLocation[x];
-                        //StringSymbolLocation.RemoveAt(x);
+                        var StringIndexBeforeSemicolon = 0;
+                        if (x==0)
+                        {
+                            StringIndexBeforeSemicolon = StringSymbolLocation[x];
+                        }
+                        else
+                        {
+                            StringIndexBeforeSemicolon = StringSymbolLocation[x - 1];
+                        }
+                        
+                        
                         var StringIndexAfterSemicolon = StringSymbolLocation[x];
-                        //StringSymbolLocation.RemoveAt(x);
+                        
                         if (SemicolonLocation[i] >= StringIndexBeforeSemicolon && SemicolonLocation[i] <= StringIndexAfterSemicolon)
                         {
+                            StringSymbolLocation.RemoveAt(x);
+                            StringSymbolLocation.RemoveAt(x-1);
                             SemicolonLocationInString.Add(SemicolonLocation[i]);
                         }
                     }

@@ -25,6 +25,7 @@ namespace DatabaseManagementUI
             string test = ((TextBox)sender).Text;
             var tes2t = new Models.DatabaseConnector("server=127.0.0.1;uid=root;pwd=;database=northwind");
             tes2t.Query(test);
+            ((TextBox)sender).Text = "";
         }
     }
 }
