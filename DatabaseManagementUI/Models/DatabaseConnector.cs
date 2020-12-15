@@ -59,18 +59,25 @@ namespace DatabaseManagementUI.Models
         public async void Query(string SQL)
         {
             List<int> StringSymbolLocation = new List<int>();
+            List<int> SemicolonLocation = new List<int>();
+            List<int> StringsWithSemicolons = new List<int>();
+            List<string> Statements = new List<string>();
             for (int i = 0; i < SQL.Length; i++)
             {
                 if (SQL[i] == '\"' || SQL[i] == '\'' || SQL[i] == '`')
                 {
                     StringSymbolLocation.Add(i);
                 }
+                else if (SQL[i] == ';')
+                {
+                    SemicolonLocation.Add(i);
+                }
             }
             if (StringSymbolLocation.Count % 2 != 0)
             {
                 
             }
-            List<int> StringsWithSemicolons = new List<int>();
+            
             for (int i = 0; i < StringSymbolLocation.Count; i+=2)
             {
                 var StringFirstSymbol = StringSymbolLocation[i];
@@ -83,12 +90,22 @@ namespace DatabaseManagementUI.Models
                 } 
                 
             }
-
+            for (int i = 0; i < SemicolonLocation.Count; i++)
+            {
+                for (int STL = 0; STL < StringsWithSemicolons.Count; STL+=2)
+                {
+                    if (SemicolonLocation[i] >= StringsWithSemicolons[STL] || SemicolonLocation[i] <= StringsWithSemicolons[STL+1])
+                    {
+                        Statements.Add(SQL.Substring(0, SemicolonLocation[i]));
+                        
+                    }
+                }
+            }
 
 
 
             //Legacy Implementation
-            //List<int> SemicolonLocation = new List<int>();
+            
             //for (int i = 0; i < SQL.Length; i++)
             //{
             //    if (SQL[i] == '\"' || SQL[i] == '\'' || SQL[i] == '`')
@@ -154,9 +171,9 @@ namespace DatabaseManagementUI.Models
             //    }
             //}
 
-            foreach (var item in StringsWithSemicolons)
+            foreach (var item in Statements)
             {
-                MessageBox.Show(SQL.Substring(item));
+                MessageBox.Show(item);
             }
             var sqlCommand = new MySqlCommand(SQL, MySqlConn);
 
