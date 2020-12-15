@@ -23,7 +23,7 @@ namespace DatabaseManagementUI
         private void test_KeyUp(object sender, KeyEventArgs e)
         {
             string test = ((TextBox)sender).Text;
-            var tes2t = new Models.DatabaseConnector("server=127.0.0.1;uid=root;pwd=;database=northwind");
+            var tes2t = new Models.DatabaseConnector("server=127.0.0.1;uid=root;pwd=;database=nordwind");
             tes2t.Query(test);
             ((TextBox)sender).Text = "";
         }
