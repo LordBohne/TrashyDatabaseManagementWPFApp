@@ -94,10 +94,14 @@ namespace DatabaseManagementUI.Models
             {
                 for (int STL = 0; STL < StringsWithSemicolons.Count; STL+=2)
                 {
-                    if (SemicolonLocation[i] >= StringsWithSemicolons[STL] || SemicolonLocation[i] <= StringsWithSemicolons[STL+1])
+                    if (SemicolonLocation[i] >= StringsWithSemicolons[STL] !&& SemicolonLocation[i] <= StringsWithSemicolons[STL+1])
+                    {
+                        
+
+                    }
+                    else
                     {
                         Statements.Add(SQL.Substring(0, SemicolonLocation[i]));
-                        
                     }
                 }
             }
