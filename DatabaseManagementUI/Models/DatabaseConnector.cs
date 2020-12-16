@@ -1,6 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace DatabaseManagementUI.Models
@@ -56,12 +58,15 @@ namespace DatabaseManagementUI.Models
             }
 
         }
-        public async void Query(string SQL)
+        public async Task<DataTable> Query(string SQL, int CommandTimeout=30)
         {
             List<int> StringSymbolLocation = new List<int>();
             List<int> SemicolonLocation = new List<int>();
             List<int> StringsWithSemicolons = new List<int>();
             List<string> Statements = new List<string>();
+            DataTable QueryResult = new DataTable();
+            int StartPos = 0;
+            int StartPos2 = 0;
             for (int i = 0; i < SQL.Length; i++)
             {
                 if (SQL[i] == '\"' || SQL[i] == '\'' || SQL[i] == '`')
@@ -77,6 +82,10 @@ namespace DatabaseManagementUI.Models
             {
                 
             }
+            else if (SemicolonLocation.Count == 0)
+            {
+                Statements.Add(SQL);
+            }
             
             for (int i = 0; i < StringSymbolLocation.Count; i+=2)
             {
@@ -90,6 +99,14 @@ namespace DatabaseManagementUI.Models
                 } 
                 
             }
+            if (StringsWithSemicolons.Count == 0)
+            {
+                foreach (var Semicolon in SemicolonLocation)
+                {
+                    Statements.Add(SQL.Substring(StartPos2, Semicolon));
+                    StartPos2 = Semicolon;
+                }
+            }
             for (int i = 0; i < SemicolonLocation.Count; i++)
             {
                 for (int STL = 0; STL < StringsWithSemicolons.Count; STL+=2)
@@ -101,87 +118,30 @@ namespace DatabaseManagementUI.Models
                     }
                     else
                     {
-                        Statements.Add(SQL.Substring(0, SemicolonLocation[i]));
+                        var test = SQL.Length;
+                        Statements.Add(SQL.Substring(StartPos+1, SemicolonLocation[i] - StartPos));
+                        StartPos = SemicolonLocation[i];
                     }
                 }
             }
-
-
-
-            //Legacy Implementation
-            
-            //for (int i = 0; i < SQL.Length; i++)
-            //{
-            //    if (SQL[i] == '\"' || SQL[i] == '\'' || SQL[i] == '`')
-            //    {
-            //        StringSymbolLocation.Add(i);
-            //    }
-            //    else if (SQL[i] == ';')
-            //    {
-            //        SemicolonLocation.Add(i);
-            //    }
-            //}
-            //// TODO: New Approach this one doesnt work anymore for some reason. Split Stuff in between into substrings and look through those.
-            //List<int> SemicolonLocationInString = new List<int>();
-            //bool firstrun = true;
-            //for (int i = 0; i < SemicolonLocation.Count; i++)
-            //{
-            //    for (int x = 0; x < StringSymbolLocation.Count; x++)
-            //    {
-            //        if (SemicolonLocation[i]! < StringSymbolLocation[x] && firstrun)
-            //        {
-            //            if (x >=2)
-            //            {
-            //                x = 1;
-            //            }
-            //            var StringIndexBeforeSemicolon = StringSymbolLocation[x - 1];
-                        
-            //            var StringIndexAfterSemicolon = StringSymbolLocation[x];
-            //            if (SemicolonLocation[0] > StringSymbolLocation[1])
-            //            {
-            //                StringSymbolLocation.RemoveAt(0);
-            //                StringSymbolLocation.RemoveAt(0);
-            //            }
-            //            if (SemicolonLocation[i] >= StringIndexBeforeSemicolon && SemicolonLocation[i] <= StringIndexAfterSemicolon)
-            //            {
-            //                StringSymbolLocation.RemoveAt(x - 1);
-            //                StringSymbolLocation.RemoveAt(x - 1);
-            //                SemicolonLocationInString.Add(SemicolonLocation[i]);
-            //            }
-            //            firstrun = false;
-            //        }
-            //        else if (SemicolonLocation[i]! < StringSymbolLocation[x])
-            //        {
-            //            var StringIndexBeforeSemicolon = 0;
-            //            if (x==0)
-            //            {
-            //                StringIndexBeforeSemicolon = StringSymbolLocation[x];
-            //            }
-            //            else
-            //            {
-            //                StringIndexBeforeSemicolon = StringSymbolLocation[x - 1];
-            //            }
-                        
-                        
-            //            var StringIndexAfterSemicolon = StringSymbolLocation[x];
-                        
-            //            if (SemicolonLocation[i] >= StringIndexBeforeSemicolon && SemicolonLocation[i] <= StringIndexAfterSemicolon)
-            //            {
-            //                StringSymbolLocation.RemoveAt(x);
-            //                StringSymbolLocation.RemoveAt(x-1);
-            //                SemicolonLocationInString.Add(SemicolonLocation[i]);
-            //            }
-            //        }
-            //    }
-            //}
-
-            foreach (var item in Statements)
+            foreach (string Statement in Statements)
             {
-                MessageBox.Show(item);
+                var sqlCommand = new MySqlCommand(Statement, MySqlConn);
+                sqlCommand.CommandTimeout = CommandTimeout;
+                if (!Statement.ToLower().Contains("select"))
+                {
+                    await sqlCommand.ExecuteNonQueryAsync();
+                }
+                else
+                {
+                    var Reader = await sqlCommand.ExecuteReaderAsync();
+                    QueryResult.Load(Reader);
+                    Reader.Close();
+
+                }
+                sqlCommand.Dispose();
             }
-            var sqlCommand = new MySqlCommand(SQL, MySqlConn);
-
-
+            return QueryResult;
         }
     }
 }
