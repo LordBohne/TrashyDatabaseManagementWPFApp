@@ -9,7 +9,10 @@ namespace DatabaseManagementUI.Models
 {
     public class DatabaseConnector
     {
-        public MySqlConnection MySqlConn = new MySqlConnection();
+        // TODO: Make everything asyncrynous 
+        // TODO: Optimize and comment the code
+        public MySqlConnection MySqlConn { get; set; }
+        public string ConnectionString { get; set; }
         /// <summary>
         /// The constructor of the DatabaseConnector class. Its job is to initialiase a database connection to a specified
         /// database
@@ -26,8 +29,9 @@ namespace DatabaseManagementUI.Models
                 case 1:
                     try
                     {
-                        MySqlConn.ConnectionString = ConnectionString;
-                        MySqlConn.Open();
+                        //MySqlConn.ConnectionString = ConnectionString;
+                        //MySqlConn.Open();
+                        this.ConnectionString = ConnectionString;
                         break;
                     }
                     catch (InvalidOperationException e)
@@ -60,6 +64,8 @@ namespace DatabaseManagementUI.Models
         }
         public async Task<DataTable> Query(string SQL, int CommandTimeout=30)
         {
+            MySqlConn = new MySqlConnection(this.ConnectionString);
+            MySqlConn.Open();
             List<int> StringSymbolLocation = new List<int>();
             List<int> SemicolonLocation = new List<int>();
             List<int> StringsWithSemicolons = new List<int>();
@@ -141,7 +147,43 @@ namespace DatabaseManagementUI.Models
                 }
                 sqlCommand.Dispose();
             }
+            MySqlConn.Close();
             return QueryResult;
+        }
+
+        public List<string> GetMySQLDatabases()
+        {
+            MySqlConn = new MySqlConnection(ConnectionString);
+            MySqlConn.Open();
+            var sqlCommand = new MySqlCommand("SHOW DATABASES", MySqlConn);
+            var Databases = new List<string>();
+            MySqlDataReader rdr = sqlCommand.ExecuteReader();
+            while (rdr.Read())
+            {
+               Databases.Add((string)rdr[0]);
+            }
+            MySqlConn.Close();
+            return Databases;
+        }
+
+        public List<string> GetMySQLTables(string DatabaseName)
+        {
+            List<string> Tables = new List<string>();
+            MySqlConn = new MySqlConnection(GenerateMySQLConnectionString(DatabaseName, "localhost", "", "root")); // TODO: Make it dynamic
+            MySqlConn.Open();
+            var sqlCommand = new MySqlCommand("SHOW TABLES", MySqlConn);
+            MySqlDataReader rdr = sqlCommand.ExecuteReader();
+            while (rdr.Read())
+            {
+                Tables.Add((string)rdr[0]);
+            }
+            MySqlConn.Close();
+            return Tables;
+        }
+
+        public string GenerateMySQLConnectionString(string DatabaseName, string ServerLocation, string Password, string UserName)
+        {
+            return "";
         }
     }
 }
