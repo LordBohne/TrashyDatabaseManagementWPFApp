@@ -24,5 +24,6 @@
         <Button x:Name="ExistingDatabase" Grid.Column="0" Grid.Row="1" Content="Proceed with existing databases" Margin="10" Background="pink" Foreground="#939393" Click="ExistingDatabase_Click"/>
         <!--A button that will let the user import another database--> 
         <Button x:Name="NewDatabase" Grid.Column="3" Grid.Row="1" Content="Add new database" Margin="10" Background="#373737" Foreground="#939393"/>
+        
     </Grid>
 </Window>

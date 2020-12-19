@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DatabaseManagementUI.Models
 {
     public class ConfigHandler
     {
-        public Dictionary<string, bool> Settings = new Dictionary<string, bool>();
+        public string optXAMPPLocation { get; set; }
         public bool ConfigCreate(string ConfigPath)
         {
             try
