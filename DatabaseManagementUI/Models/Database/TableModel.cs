@@ -2,12 +2,12 @@
 
 namespace DatabaseManagementUI.Models
 {
-    public class DataRowModel
+    public class TableModel
     {
         // The primary key that corresponds to the current row
-        public string PrimaryKey { get; set; }
+        public string TableName { get; set; }
         // The individuel rows of the database
-        public List<DataFieldModel> DataRow { get; set; }
+        public List<TableFieldModel> Table { get; set; }
 
     }
 }
