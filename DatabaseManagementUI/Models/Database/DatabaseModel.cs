@@ -2,13 +2,13 @@
 
 namespace DatabaseManagementUI.Models
 {
-    class DataTableModel
+    class DatabaseModel
     {
         // The name of the table in the database
-        public string TableName { get; set; }
+        public string DatabaseName { get; set; }
         // The name of the database
         public string DataBaseName { get; set; }
         // The content of the database
-        public List<DataRowModel> DataRows { get; set; }
+        public List<TableModel> DataRows { get; set; }
     }
 }
