@@ -169,7 +169,7 @@ namespace DatabaseManagementUI.Models
         public List<string> GetMySQLTables(string DatabaseName)
         {
             List<string> Tables = new List<string>();
-            MySqlConn = new MySqlConnection(GenerateMySQLConnectionString(DatabaseName, "localhost", "", "root")); // TODO: Make it dynamic
+            MySqlConn = new MySqlConnection(GenerateMySQLConnectionString("localhost","root",DatabaseName)); // TODO: Make it dynamic
             MySqlConn.Open();
             var sqlCommand = new MySqlCommand("SHOW TABLES", MySqlConn);
             MySqlDataReader rdr = sqlCommand.ExecuteReader();
@@ -180,10 +180,17 @@ namespace DatabaseManagementUI.Models
             MySqlConn.Close();
             return Tables;
         }
-
-        public string GenerateMySQLConnectionString(string DatabaseName, string ServerLocation, string Password, string UserName)
+        /// <summary>
+        /// Generates a MYSQL connection string for the MySql.Data.MySqlClient Library
+        /// </summary>
+        /// <param name="ServerLocation">The location of the Server example: localhost or 127.0.0.1</param>
+        /// <param name="UserName">The username that is required to log into the MYSQL Server example: root</param>
+        /// <param name="DatabaseName">The name of the database if a connection to a specific database is wanted</param>
+        /// <param name="Password">The password that is required to log into the MYSQL Server example: 1238127471267</param>
+        /// <returns></returns>
+        public string GenerateMySQLConnectionString(string ServerLocation, string UserName, string DatabaseName=null,  string Password=null)
         {
-            return "";
+            return $"server={ServerLocation};uid={UserName};pwd={Password};database={DatabaseName}";
         }
     }
 }
