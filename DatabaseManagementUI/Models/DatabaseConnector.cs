@@ -169,7 +169,7 @@ namespace DatabaseManagementUI.Models
         public List<string> GetMySQLTables(string DatabaseName)
         {
             List<string> Tables = new List<string>();
-            MySqlConn = new MySqlConnection(GenerateMySQLConnectionString("localhost","root",DatabaseName); // TODO: Make it dynamic
+            MySqlConn = new MySqlConnection(GenerateMySQLConnectionString("localhost","root",DatabaseName)); // TODO: Make it dynamic
             MySqlConn.Open();
             var sqlCommand = new MySqlCommand("SHOW TABLES", MySqlConn);
             MySqlDataReader rdr = sqlCommand.ExecuteReader();

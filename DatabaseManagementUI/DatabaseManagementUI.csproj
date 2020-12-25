@@ -12,7 +12,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Ressources\SQL.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.0.22" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Ressources\SQL.png" />
   </ItemGroup>
 
 </Project>

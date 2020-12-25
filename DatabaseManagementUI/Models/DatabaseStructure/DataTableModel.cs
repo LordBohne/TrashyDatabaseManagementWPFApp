@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DatabaseManagementUI.Models
+namespace DatabaseManagementUI.DatabaseStructure
 {
     class DataTableModel
     {
