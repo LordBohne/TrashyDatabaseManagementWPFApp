@@ -29,20 +29,27 @@ namespace DatabaseManagementUI.Pages
         private void SendSQLButton_Click(object sender, RoutedEventArgs e)
         {
             Models.DatabaseConnector databaseConnector = new Models.DatabaseConnector(Models.DatabaseConnector.GenerateMySQLConnectionString("localhost", "root", "nordwind"));
+            var test = databaseConnector.Query("SELECT * FROM ARTIKEL").Result;
+            ReturnedData.ItemsSource = test.AsDataView();
+        https://www.google.com/search?client=firefox-b-d&q=datagrid+bind+to+datatable
             //ViewModels.DatabaseViewModel databaseViewModel = new ViewModels.DatabaseViewModel("localhost", "root", "nordwind");
             //databaseViewModel.ExecuteAndRemodelQuery("SELECT * FROM ARTIKEL");
 
-            DataGridTextColumn textColumn = new DataGridTextColumn();
-            textColumn.Header = "First Name";
-            ReturnedData.Columns.Add(textColumn);
-            ReturnedData.Items.Add("test");
-            ReturnedData.Items.Insert(1, "test");
+            //DataGridTextColumn textColumn = new DataGridTextColumn();
+            //textColumn.Header = "First Name";
+            //textColumn.Binding = new Binding("Test");
+            //ReturnedData.Columns.Add(textColumn);
+            //var test = new List<string>();
+            //test.Add("TEST");
+            //test.Add("TEST");
+            //test.Add("TEST");
+            //ReturnedData.Items.Add(new MyClass { Test = test});
             //ReturnedData.Items.Add(new MyClass { test = databaseConnector.Query(SQLInput.Text).Result.AsEnumerable() });
             //MessageBox.Show("yay");
         }
         class MyClass
         {
-            public IEnumerable<object> test { get; set; }
+            public List<string> Test { get; set; }
         }
     }
 }
