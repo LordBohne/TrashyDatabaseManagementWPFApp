@@ -12,22 +12,23 @@ namespace DatabaseManagementUI.ViewModels
     public class DatabaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
-        Models.DatabaseConnector Connector { get; set; }
+        public Models.DatabaseConnector Connector { get; set; }
 
-        object RemodeltDataTableItem
+        private DataView dataTableView;
+        public DataView DataTableView
         {
             get
             {
-                return this;
+                return dataTableView;
             }
             set
             {
-                if (value == RemodeltDataTableItem)
+                if (value == dataTableView)
                 {
                     return;
                 }
-                RemodeltDataTableItem = value;
-                PropertyChanged(this, new PropertyChangedEventArgs(nameof(RemodeltDataTableItem)));
+                dataTableView = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(DataTableView)));
             }
         }
 
@@ -35,10 +36,9 @@ namespace DatabaseManagementUI.ViewModels
         {
             Connector = new Models.DatabaseConnector(Models.DatabaseConnector.GenerateMySQLConnectionString(Servername, Username, Database, Password));
         }
-        public object ExecuteAndRemodelQuery(string SQL)
+        public void ExecuteAndSetQuery(string SQL)
         {
-            var DataTable = Connector.Query(SQL).Result.AsEnumerable().ToList();
-            return "";
+            DataTableView = Connector.Query(SQL).Result.DefaultView;
         }
     }
 }

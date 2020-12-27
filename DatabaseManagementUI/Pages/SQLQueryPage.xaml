@@ -29,11 +29,12 @@
                     <ColumnDefinition Width="0.8*"/>
                     <ColumnDefinition Width="0.2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" x:Name="SQLInput" Text="Input your Queries here" />
-                <Button Grid.Column="1" Content="SEND SQL" Click="SendSQLButton_Click"/>
+                <TextBox Grid.Column="0" x:Name="SQLInput" Text="Enter Queries here" />
+                <Button Grid.Column="1" Content="Execute" Click="SendSQLButton_Click"/>
             </Grid>
 
-            <DataGrid Grid.Row="1" x:Name="ReturnedData"/>
+            <DataGrid Grid.Row="1" x:Name="ReturnedData" ItemsSource="{Binding DataTableView}">
+            </DataGrid>
         </Grid>
     </Grid>
 

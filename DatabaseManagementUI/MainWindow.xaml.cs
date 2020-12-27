@@ -13,6 +13,7 @@ namespace DatabaseManagementUI
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new ViewModels.DatabaseViewModel("localhost", "root", "nordwind");
         }
 
         private void SQLStatementButton_Click(object sender, RoutedEventArgs e)
