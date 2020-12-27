@@ -188,7 +188,7 @@ namespace DatabaseManagementUI.Models
         /// <param name="DatabaseName">The name of the database if a connection to a specific database is wanted</param>
         /// <param name="Password">The password that is required to log into the MYSQL Server example: 1238127471267</param>
         /// <returns></returns>
-        public string GenerateMySQLConnectionString(string ServerLocation, string UserName, string DatabaseName=null,  string Password=null)
+        public static string GenerateMySQLConnectionString(string ServerLocation, string UserName, string DatabaseName=null,  string Password=null)
         {
             return $"server={ServerLocation};uid={UserName};pwd={Password};database={DatabaseName}";
         }

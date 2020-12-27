@@ -19,9 +19,22 @@
         </Frame>
 
         <TextBlock Grid.Row="1" Grid.Column="1" Text="Actual page content e.g. Showing the database" Foreground="AliceBlue"/>
-        <StackPanel Orientation="Vertical" Grid.Row="1" x:Name="PageContent">
+        <Grid Grid.Row="1" x:Name="PageContent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.8*"/>
+            </Grid.RowDefinitions>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" x:Name="SQLInput" Text="Input your Queries here" />
+                <Button Grid.Column="1" Content="SEND SQL" Click="SendSQLButton_Click"/>
+            </Grid>
 
-        </StackPanel>
+            <DataGrid Grid.Row="1" x:Name="ReturnedData" AutoGenerateColumns="False"/>
+        </Grid>
     </Grid>
 
 </Page>
