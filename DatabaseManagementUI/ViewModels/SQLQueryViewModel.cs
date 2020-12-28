@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using DatabaseManagementUI;
 namespace DatabaseManagementUI.ViewModels
 {
-    public class DatabaseViewModel : INotifyPropertyChanged
+    public class SQLQueryViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
         public Models.DatabaseConnector Connector { get; set; }
@@ -32,7 +32,7 @@ namespace DatabaseManagementUI.ViewModels
             }
         }
 
-        public DatabaseViewModel(string Servername, string Username, string Database=null, string Password=null)
+        public SQLQueryViewModel(string Servername, string Username, string Database=null, string Password=null)
         {
             Connector = new Models.DatabaseConnector(Models.DatabaseConnector.GenerateMySQLConnectionString(Servername, Username, Database, Password));
         }

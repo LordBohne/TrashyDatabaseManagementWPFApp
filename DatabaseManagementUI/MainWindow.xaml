@@ -23,7 +23,7 @@
         </Button>
         <!--#endregion-->
         
-            <TreeView Grid.Row="1" Background="#121212">
+        <!--<TreeView Grid.Row="1" Background="#121212">
             <TreeViewItem Header="Database1" IsExpanded="True" Foreground="AliceBlue">
                 <TreeViewItem Header="Table1" Foreground="AliceBlue"/>
                 <TreeViewItem Header="Table2" Foreground="AliceBlue"/>
@@ -45,7 +45,10 @@
                 <TreeViewItem Header="Table4" Foreground="AliceBlue"/>
                 <TreeViewItem Header="Table5" Foreground="AliceBlue"/>
             </TreeViewItem>
-        </TreeView>
+        </TreeView>-->
+        <Frame Grid.Row="1" x:Name="TreeViewTest">
+            
+        </Frame>
         <Frame Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" x:Name="Page" NavigationUIVisibility="Hidden">
 
         </Frame>

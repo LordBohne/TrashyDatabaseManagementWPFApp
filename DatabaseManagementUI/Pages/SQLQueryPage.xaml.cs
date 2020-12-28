@@ -33,9 +33,14 @@ namespace DatabaseManagementUI.Pages
             //ReturnedData.ItemsSource = test.DefaultView;
 
             //https://www.google.com/search?client=firefox-b-d&q=datagrid+bind+to+datatable
-            ViewModels.DatabaseViewModel databaseViewModel = new ViewModels.DatabaseViewModel("localhost", "root", "nordwind");
-            this.DataContext = databaseViewModel;
-            databaseViewModel.ExecuteAndSetQuery(SQLInput.Text);
+            ViewModels.SQLQueryViewModel sQLQueryViewModel = new ViewModels.SQLQueryViewModel("localhost", "root", "nordwind");
+            this.DataContext = sQLQueryViewModel;
+            sQLQueryViewModel.ExecuteAndSetQuery(SQLInput.Text);
+            Models.DatabaseStructureMethods databaseStructureMethods = new Models.DatabaseStructureMethods(Models.DatabaseConnector.GenerateMySQLConnectionString("localhost", "root"));
+            var test = databaseStructureMethods.GetMySQLDatabases();
+            var tesst = databaseStructureMethods.GetMySQLTables("nordwind");
+            var tessst = databaseStructureMethods.GetTableFields("Artikel", "Nordwind");
+            Console.WriteLine("lel");
         }
             
         }

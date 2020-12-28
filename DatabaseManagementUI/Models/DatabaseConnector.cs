@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DatabaseManagementUI.DatabaseStructure;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -46,21 +47,12 @@ namespace DatabaseManagementUI.Models
         }
         public int ExecuteScript(string Script, string Delimiter = null)
         {
-            try
-            {
                 MySqlScript sqlScript = new MySqlScript(MySqlConn, Script);
                 if (Delimiter != null)
                 {
                     sqlScript.Delimiter = Delimiter;
                 }
                 return sqlScript.Execute();
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
         }
         public async Task<DataTable> Query(string SQL, int CommandTimeout=30)
         {
@@ -85,9 +77,7 @@ namespace DatabaseManagementUI.Models
                 }
             }
             if (StringSymbolLocation.Count % 2 != 0)
-            {
-                
-            }
+                ;
             else if (SemicolonLocation.Count == 0)
             {
                 Statements.Add(SQL);
@@ -149,36 +139,6 @@ namespace DatabaseManagementUI.Models
             }
             MySqlConn.Close();
             return QueryResult;
-        }
-
-        public List<string> GetMySQLDatabases()
-        {
-            MySqlConn = new MySqlConnection(ConnectionString);
-            MySqlConn.Open();
-            var sqlCommand = new MySqlCommand("SHOW DATABASES", MySqlConn);
-            var Databases = new List<string>();
-            MySqlDataReader rdr = sqlCommand.ExecuteReader();
-            while (rdr.Read())
-            {
-               Databases.Add((string)rdr[0]);
-            }
-            MySqlConn.Close();
-            return Databases;
-        }
-
-        public List<string> GetMySQLTables(string DatabaseName)
-        {
-            List<string> Tables = new List<string>();
-            MySqlConn = new MySqlConnection(GenerateMySQLConnectionString("localhost","root",DatabaseName)); // TODO: Make it dynamic
-            MySqlConn.Open();
-            var sqlCommand = new MySqlCommand("SHOW TABLES", MySqlConn);
-            MySqlDataReader rdr = sqlCommand.ExecuteReader();
-            while (rdr.Read())
-            {
-                Tables.Add((string)rdr[0]);
-            }
-            MySqlConn.Close();
-            return Tables;
         }
         /// <summary>
         /// Generates a MYSQL connection string for the MySql.Data.MySqlClient Library

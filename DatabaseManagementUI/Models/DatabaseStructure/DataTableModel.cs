@@ -2,7 +2,7 @@
 
 namespace DatabaseManagementUI.DatabaseStructure
 {
-    class DataTableModel
+    public class DataTableModel
     {
         // The name of the table in the database
         public string TableName { get; set; }
