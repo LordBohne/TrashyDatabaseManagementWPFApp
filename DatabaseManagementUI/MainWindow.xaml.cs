@@ -13,13 +13,15 @@ namespace DatabaseManagementUI
         public MainWindow()
         {
             InitializeComponent();
+            var TreeView = new ViewModels.DatabaseStructureViewModel();
+            TreeView.DatabaseTreeView(Models.DatabaseConnector.GenerateMySQLConnectionString("localhost", "root"));
+            this.DataContext = TreeView;
+            
         }
 
         private void SQLStatementButton_Click(object sender, RoutedEventArgs e)
         {
             Page.Content = new Pages.SQLQueryPage();
-            var test = new ViewModels.DatabaseStructureViewModel();
-            TreeViewTest.Content = test.DatabaseTreeView(Models.DatabaseConnector.GenerateMySQLConnectionString("localhost", "root"));
         }
 
 

@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace DatabaseManagementUI.Pages
 {
@@ -36,11 +24,6 @@ namespace DatabaseManagementUI.Pages
             ViewModels.SQLQueryViewModel sQLQueryViewModel = new ViewModels.SQLQueryViewModel("localhost", "root", "nordwind");
             this.DataContext = sQLQueryViewModel;
             sQLQueryViewModel.ExecuteAndSetQuery(SQLInput.Text);
-            Models.DatabaseStructureMethods databaseStructureMethods = new Models.DatabaseStructureMethods(Models.DatabaseConnector.GenerateMySQLConnectionString("localhost", "root"));
-            var test = databaseStructureMethods.GetMySQLDatabases();
-            var tesst = databaseStructureMethods.GetMySQLTables("nordwind");
-            var tessst = databaseStructureMethods.GetTableFields("Artikel", "Nordwind");
-            Console.WriteLine("lel");
         }
             
         }

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using DatabaseManagementUI.DatabaseStructure;
 
@@ -57,7 +54,7 @@ namespace DatabaseManagementUI.Models
             List<string> Tables = new List<string>();
             //MySqlConn = new MySqlConnection(GenerateMySQLConnectionString("localhost", "root", DatabaseName)); // TODO: Make it dynamic
             //MySqlConn.Open();
-            var sqlCommand = new MySqlCommand($"SHOW TABLES FROM {DatabaseName}", MySqlConn);
+            var sqlCommand = new MySqlCommand($"SHOW TABLES FROM `{DatabaseName}`", MySqlConn);
             MySqlDataReader rdr = sqlCommand.ExecuteReader();
             while (rdr.Read())
             {
@@ -73,7 +70,7 @@ namespace DatabaseManagementUI.Models
             var TableFields = new List<DataFieldModel>();
             //MySqlConn = new MySqlConnection(GenerateMySQLConnectionString("localhost", "root", DatabaseName)); // TODO: Make it dynamic
             //MySqlConn.Open();
-            var sqlCommand = new MySqlCommand($"DESCRIBE {DatabaseName}.{TableName};", MySqlConn);
+            var sqlCommand = new MySqlCommand($"DESCRIBE {DatabaseName}.`{TableName}`;", MySqlConn);
             MySqlDataReader rdr = sqlCommand.ExecuteReader();
             while (rdr.Read())
             {

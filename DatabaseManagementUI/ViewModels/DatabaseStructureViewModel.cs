@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using DatabaseManagementUI.Models.DatabaseStructure;
 namespace DatabaseManagementUI.ViewModels
@@ -11,34 +8,48 @@ namespace DatabaseManagementUI.ViewModels
     public class DatabaseStructureViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
-        private List<DatabaseModel> databaseStructure;
-        public List<DatabaseModel> DatabaseStructure
+        private TreeView databaseStructureTreeView;
+        public TreeView DatabaseStructureTreeView
         {
             get
             {
-                return databaseStructure;
+                return databaseStructureTreeView;
             }
             set
             {
-                if (databaseStructure == value)
+                if (value == databaseStructureTreeView)
                     return;
-                databaseStructure = value;
-                PropertyChanged(this, new PropertyChangedEventArgs(nameof(DatabaseStructure)));
+                databaseStructureTreeView = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(DatabaseStructureTreeView)));
             }
         }
-        public TreeView DatabaseStructureTreeView { get; set; }
-        public TreeView DatabaseTreeView(string ConnectionStringToServer,int ServerType=1)
+        public void DatabaseTreeView(string ConnectionStringToServer,int ServerType=1)
         {
             var DatabaseStructure = new Models.DatabaseStructureMethods(ConnectionStringToServer, ServerType);
             var Databases = DatabaseStructure.GetMySQLDatabases();
             var DatabaseTreeView = new TreeView();
-            var TreeViewItem = new TreeViewItem();
             foreach (var Database in Databases)
             {
-                TreeViewItem.Header = Database;
-                DatabaseTreeView.Items.Add(TreeViewItem); // DOESNT WORK THROWS ERROR
+                var DatabaseItem = new TreeViewItem();
+                DatabaseItem.Header = Database;
+                var MySQLTables = DatabaseStructure.GetMySQLTables(Database);
+                foreach (string table in MySQLTables)
+                {
+                    var TableItem = new TreeViewItem();
+                    TableItem.Header = table;
+                    
+                    var TableFields = DatabaseStructure.GetTableFields(table, Database);
+                    foreach (var Field in TableFields)
+                    {
+                        var FieldItem = new TreeViewItem();
+                        FieldItem.Header = Field.FieldName;
+                        TableItem.Items.Add(FieldItem);
+                    }
+                    DatabaseItem.Items.Add(TableItem);
+                }
+                DatabaseTreeView.Items.Add(DatabaseItem);
             }
-            return DatabaseTreeView;
+            DatabaseStructureTreeView = DatabaseTreeView;
         }
     }
 }
