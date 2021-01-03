@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using DatabaseManagementUI.DatabaseStructure;
 using DatabaseManagementUI.Models.DatabaseStructure;
 namespace DatabaseManagementUI.ViewModels
 {
@@ -27,42 +26,24 @@ namespace DatabaseManagementUI.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(nameof(DatabaseStructureTreeView)));
             }
         }
-        public void DatabaseTreeView(string ConnectionStringToServer,int ServerType=1)
+        private ObservableCollection<DatabaseModel> databaseStructuree;
+        public ObservableCollection<DatabaseModel> DatabaseStructuree
         {
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
-            var DatabaseStructure = new Models.DatabaseStructureMethods(ConnectionStringToServer, ServerType);
-            var Databases = DatabaseStructure.GetMySQLDatabases();
-            var DatabaseTreeView = new TreeView();
-            foreach (var Database in Databases)
+            get
             {
-                var DatabaseItem = new TreeViewItem();
-                DatabaseItem.Header = Database;
-                var MySQLTables = DatabaseStructure.GetMySQLTables(Database);
-                foreach (string table in MySQLTables)
-                {
-                    var TableItem = new TreeViewItem();
-                    TableItem.Header = table;
-                    
-                    var TableFields = DatabaseStructure.GetTableFields(table, Database);
-                    foreach (var Field in TableFields)
-                    {
-                        var FieldItem = new TreeViewItem();
-                        FieldItem.Header = Field.FieldName;
-                        TableItem.Items.Add(FieldItem);
-                    }
-                    DatabaseItem.Items.Add(TableItem);
-                }
-                DatabaseTreeView.Items.Add(DatabaseItem);
+                return databaseStructuree;
             }
-            DatabaseStructureTreeView = DatabaseTreeView;
-            stopWatch.Stop();
-            MessageBox.Show(stopWatch.ElapsedMilliseconds.ToString());
+            set
+            {
+                if (value == databaseStructuree)
+                    return;
+                databaseStructuree = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(DatabaseStructuree)));
+            }
         }
+
         public void DatabaseModelConverter(string ConnectionStringToServer,int ServerType = 1)
         {
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
             var DatabaseStructure = new Models.DatabaseStructureMethods(ConnectionStringToServer, ServerType);
             var MySQLDatabases = DatabaseStructure.GetMySQLDatabases();
             ObservableCollection<DatabaseModel> databases = new ObservableCollection<DatabaseModel>();
@@ -88,8 +69,7 @@ namespace DatabaseManagementUI.ViewModels
                 }
                 databases.Add(DatabaseItem);
             }
-            stopWatch.Stop();
-            MessageBox.Show(stopWatch.ElapsedMilliseconds.ToString());
+            DatabaseStructuree = databases;
         }
     }
 }

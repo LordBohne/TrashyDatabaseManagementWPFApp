@@ -14,7 +14,6 @@ namespace DatabaseManagementUI
         {
             InitializeComponent();
             var TreeView = new ViewModels.DatabaseStructureViewModel();
-            TreeView.DatabaseTreeView(Models.DatabaseConnector.GenerateMySQLConnectionString("localhost", "root"));
             TreeView.DatabaseModelConverter(Models.DatabaseConnector.GenerateMySQLConnectionString("localhost", "root"));
             this.DataContext = TreeView;
             

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
-using DatabaseManagementUI.DatabaseStructure;
+using DatabaseManagementUI.Models.DatabaseStructure;
 
 namespace DatabaseManagementUI.Models
 {

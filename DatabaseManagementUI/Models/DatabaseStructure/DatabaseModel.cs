@@ -1,4 +1,4 @@
-﻿using DatabaseManagementUI.DatabaseStructure;
+﻿using DatabaseManagementUI.Models.DatabaseStructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;

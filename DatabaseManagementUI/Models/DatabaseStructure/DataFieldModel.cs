@@ -1,4 +1,4 @@
-﻿namespace DatabaseManagementUI.DatabaseStructure
+﻿namespace DatabaseManagementUI.Models.DatabaseStructure
 {
     public class DataFieldModel
     {
