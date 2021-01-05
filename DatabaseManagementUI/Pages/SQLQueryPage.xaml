@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:DatabaseManagementUI.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SQLQueryPage">
+      Title="SQLQueryPage"
+      
+      >
 
     <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" x:Name="Page">
         <Grid.RowDefinitions>

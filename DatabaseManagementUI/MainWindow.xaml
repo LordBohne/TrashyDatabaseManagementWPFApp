@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:DatabaseManagementUI"
         xmlns:ViewModels="clr-namespace:DatabaseManagementUI.ViewModels"
         xmlns:Models="clr-namespace:DatabaseManagementUI.Models.DatabaseStructure"
-        
     
         mc:Ignorable="d"
         x:Name="SimpleDMSMainWindow"
@@ -30,7 +29,7 @@
         <!--<Frame Grid.Row="1" Content="{Binding DatabaseStructureTreeView}">
             
         </Frame>-->
-        <TreeView Grid.Row="1" ItemsSource="{Binding DatabaseStructuree}">
+        <TreeView x:Name="DatabaseStructureTreeView" Grid.Row="1" ItemsSource="{Binding DatabaseStructuree}" SelectedItemChanged="DatabaseStructureTreeView_SelectedItemChanged">
             <TreeView.Resources>
                 <HierarchicalDataTemplate DataType="{x:Type Models:DatabaseModel}" ItemsSource="{Binding Tables}">
                     <TextBlock Text="{Binding Path=DatabaseName}"/>
@@ -38,7 +37,7 @@
                 <HierarchicalDataTemplate DataType="{x:Type Models:DataTableModel}" ItemsSource="{Binding TableFields}">
                     <TextBlock Text="{Binding Path=TableName}"/>
                 </HierarchicalDataTemplate>
-                <DataTemplate DataType="{x:Type Models:DataFieldModel}">
+                <DataTemplate DataType="{x:Type Models:DataFieldModel}" >
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="{Binding Path=FieldName}"/>
                         <TextBlock Text="{Binding Path=Type}"/>

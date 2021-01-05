@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using DatabaseManagementUI.Models.DatabaseStructure;
 namespace DatabaseManagementUI.ViewModels
 {
-    public class DatabaseStructureViewModel : INotifyPropertyChanged
+    public class MainWindowViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
         private TreeView databaseStructureTreeView;
@@ -42,6 +44,10 @@ namespace DatabaseManagementUI.ViewModels
             }
         }
 
+        public MainWindowViewModel()
+        {
+            Models.SQL.ProcessStart(@".\XAMPP\mysql_start.bat"); // TODO: Add the ConfigHandler property responsible for this here / Make it dynamic
+        }
         public void DatabaseModelConverter(string ConnectionStringToServer,int ServerType = 1)
         {
             var DatabaseStructure = new Models.DatabaseStructureMethods(ConnectionStringToServer, ServerType);

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-
+using System.Windows.Navigation;
 
 namespace DatabaseManagementUI.Pages
 {
@@ -13,15 +13,10 @@ namespace DatabaseManagementUI.Pages
         {
             InitializeComponent();
         }
-
         private void SendSQLButton_Click(object sender, RoutedEventArgs e)
         {
-            //Models.DatabaseConnector databaseConnector = new Models.DatabaseConnector(Models.DatabaseConnector.GenerateMySQLConnectionString("localhost", "root", "nordwind"));
-            //var test = databaseConnector.Query("SELECT * FROM ARTIKEL").Result;
-            //ReturnedData.ItemsSource = test.DefaultView;
-
             //https://www.google.com/search?client=firefox-b-d&q=datagrid+bind+to+datatable
-            ViewModels.SQLQueryViewModel sQLQueryViewModel = new ViewModels.SQLQueryViewModel("localhost", "root", "nordwind");
+            ViewModels.SQLQueryViewModel sQLQueryViewModel = new ViewModels.SQLQueryViewModel("localhost", "root", $"{ViewModels.SQLQueryViewModel.CurrentDatabase}");
             this.DataContext = sQLQueryViewModel;
             sQLQueryViewModel.ExecuteAndSetQuery(SQLInput.Text);
         }

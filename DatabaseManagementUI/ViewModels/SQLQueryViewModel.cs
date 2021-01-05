@@ -32,9 +32,10 @@ namespace DatabaseManagementUI.ViewModels
             }
         }
 
+        public static string CurrentDatabase { get; set; }
         public SQLQueryViewModel(string Servername, string Username, string Database=null, string Password=null)
         {
-            Connector = new Models.DatabaseConnector(Models.DatabaseConnector.GenerateMySQLConnectionString(Servername, Username, Database, Password));
+            Connector = new Models.DatabaseConnector(Models.DatabaseConnector.GenerateMySQLConnectionString(Servername, Username, Database, Password)); // TODO: Change the Databaseconnector so that it only needs to be instantiated once e.g. it can change its connected database while running
         }
         public void ExecuteAndSetQuery(string SQL)
         {
