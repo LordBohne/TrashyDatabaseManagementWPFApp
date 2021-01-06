@@ -13,11 +13,22 @@ namespace DatabaseManagementUI
         public MainWindow()
         {
             InitializeComponent();
+            var TreeView = new ViewModels.MainWindowViewModel();
+            TreeView.DatabaseModelConverter(Models.DatabaseConnector.GenerateMySQLConnectionString("localhost", "root"));
+            this.DataContext = TreeView;
+            
         }
 
         private void SQLStatementButton_Click(object sender, RoutedEventArgs e)
         {
             Page.Content = new Pages.SQLQueryPage();
+        }
+
+        private void DatabaseStructureTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            var test = (TreeView)sender;
+            var test2 = (Models.DatabaseStructure.DatabaseModel)test.SelectedItem; // TODO: Add databasenames to all models so that the same approach can be used everywhere
+            ViewModels.SQLQueryViewModel.CurrentDatabase = test2.DatabaseName;
         }
 
 

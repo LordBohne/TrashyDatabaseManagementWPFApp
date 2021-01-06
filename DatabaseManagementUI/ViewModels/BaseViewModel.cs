@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DatabaseManagementUI;
+
 namespace DatabaseManagementUI.ViewModels
 {
-    public class DatabaseViewModel
+    public class BaseViewModel : INotifyPropertyChanged
     {
-        public object RemodelDataTableItem()
-        {
-            return "";
-        }
+        public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
     }
 }

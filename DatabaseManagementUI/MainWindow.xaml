@@ -1,9 +1,12 @@
 ﻿<Window x:Class="DatabaseManagementUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DatabaseManagementUI"
+        xmlns:ViewModels="clr-namespace:DatabaseManagementUI.ViewModels"
+        xmlns:Models="clr-namespace:DatabaseManagementUI.Models.DatabaseStructure"
+    
         mc:Ignorable="d"
         x:Name="SimpleDMSMainWindow"
         Title="Simple DMS" Height="450" Width="800">
@@ -22,33 +25,33 @@
             <Image Source="Ressources/SQL.png"/>
         </Button>
         <!--#endregion-->
-        
-            <TreeView Grid.Row="1" Background="#121212">
-            <TreeViewItem Header="Database1" IsExpanded="True" Foreground="AliceBlue">
-                <TreeViewItem Header="Table1" Foreground="AliceBlue"/>
-                <TreeViewItem Header="Table2" Foreground="AliceBlue"/>
-                <TreeViewItem Header="Table3" Foreground="AliceBlue"/>
-                <TreeViewItem Header="Table4" Foreground="AliceBlue"/>
-                <TreeViewItem Header="Table5" Foreground="AliceBlue"/>
-            </TreeViewItem>
-            <TreeViewItem Header="Database2" IsExpanded="True" Foreground="AliceBlue">
-                <TreeViewItem Header="Table1" Foreground="AliceBlue"/>
-                <TreeViewItem Header="Table2" Foreground="AliceBlue"/>
-                <TreeViewItem Header="Table3" Foreground="AliceBlue"/>
-                <TreeViewItem Header="Table4" Foreground="AliceBlue"/>
-                <TreeViewItem Header="Table5" Foreground="AliceBlue"/>
-            </TreeViewItem>
-            <TreeViewItem Header="Database3" IsExpanded="True" Foreground="AliceBlue">
-                <TreeViewItem Header="Table1" Foreground="AliceBlue"/>
-                <TreeViewItem Header="Table2" Foreground="AliceBlue"/>
-                <TreeViewItem Header="Table3" Foreground="AliceBlue"/>
-                <TreeViewItem Header="Table4" Foreground="AliceBlue"/>
-                <TreeViewItem Header="Table5" Foreground="AliceBlue"/>
-            </TreeViewItem>
-        </TreeView>
-        <Frame Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" x:Name="Page">
+
+        <!--<Frame Grid.Row="1" Content="{Binding DatabaseStructureTreeView}">
             
-        </Frame>
+        </Frame>-->
+        <TreeView x:Name="DatabaseStructureTreeView" Grid.Row="1" ItemsSource="{Binding DatabaseStructuree}" SelectedItemChanged="DatabaseStructureTreeView_SelectedItemChanged">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type Models:DatabaseModel}" ItemsSource="{Binding Tables}">
+                    <TextBlock Text="{Binding Path=DatabaseName}"/>
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type Models:DataTableModel}" ItemsSource="{Binding TableFields}">
+                    <TextBlock Text="{Binding Path=TableName}"/>
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type Models:DataFieldModel}" >
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Path=FieldName}"/>
+                        <TextBlock Text="{Binding Path=Type}"/>
+                        <TextBlock Text="{Binding Path=Null}"/>
+                        <TextBlock Text="{Binding Path=Default}"/>
+                        <TextBlock Text="{Binding Path=Key}"/>
+                    </StackPanel>
+                    
+                </DataTemplate>
+            </TreeView.Resources>
+        </TreeView>
         
+        <Frame Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" x:Name="Page" NavigationUIVisibility="Hidden">
+
+        </Frame>
     </Grid>
 </Window>

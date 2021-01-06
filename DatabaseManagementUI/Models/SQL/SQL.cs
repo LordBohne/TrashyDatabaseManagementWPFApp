@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 
 //namespace DatabaseManagementUI.Models.SQL
-namespace DatabaseManagementUI
+namespace DatabaseManagementUI.Models
 {
     public class SQL
     {
@@ -11,7 +11,7 @@ namespace DatabaseManagementUI
         /// 
         /// </summary>
         /// <param name="processStart"></param>
-        public void ProcessStart(string processStart)
+        public static void ProcessStart(string processStart)
         {
             //Simple-DMS\DatabaseManagementUI\XAMPP\mysql_start.bat
 
@@ -22,7 +22,7 @@ namespace DatabaseManagementUI
         /// 
         /// </summary>
         /// <param name="processStop"></param>
-        public void ProcessStop(string processStop)
+        public static void ProcessStop(string processStop)
         {
             //Simple-DMS\DatabaseManagementUI\XAMPP\mysql_stop.bat
 

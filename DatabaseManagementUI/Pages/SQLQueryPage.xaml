@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:DatabaseManagementUI.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SQLQueryPage">
+      Title="SQLQueryPage"
+      
+      >
 
     <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" x:Name="Page">
         <Grid.RowDefinitions>
@@ -19,9 +21,23 @@
         </Frame>
 
         <TextBlock Grid.Row="1" Grid.Column="1" Text="Actual page content e.g. Showing the database" Foreground="AliceBlue"/>
-        <StackPanel Orientation="Vertical" Grid.Row="1" x:Name="PageContent">
+        <Grid Grid.Row="1" x:Name="PageContent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.8*"/>
+            </Grid.RowDefinitions>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" x:Name="SQLInput" Text="Enter Queries here" />
+                <Button Grid.Column="1" Content="Execute" Click="SendSQLButton_Click"/>
+            </Grid>
 
-        </StackPanel>
+            <DataGrid Grid.Row="1" x:Name="ReturnedData" ItemsSource="{Binding DataTableView}">
+            </DataGrid>
+        </Grid>
     </Grid>
 
 </Page>
