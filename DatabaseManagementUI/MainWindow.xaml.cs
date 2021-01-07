@@ -19,7 +19,7 @@ namespace DatabaseManagementUI
             
         }
 
-        private void SQLStatementButton_Click(object sender, RoutedEventArgs e)
+        private void SQLQueryPageButton_Click(object sender, RoutedEventArgs e)
         {
             Page.Content = new Pages.SQLQueryPage();
         }
@@ -29,6 +29,11 @@ namespace DatabaseManagementUI
             var test = (TreeView)sender;
             var test2 = (Models.DatabaseStructure.DatabaseModel)test.SelectedItem; // TODO: Add databasenames to all models so that the same approach can be used everywhere
             ViewModels.SQLQueryViewModel.CurrentDatabase = test2.DatabaseName;
+        }
+
+        private void SettingsPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            Page.Content = new Pages.SettingsPage();
         }
 
 

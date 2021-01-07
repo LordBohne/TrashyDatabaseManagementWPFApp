@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using DatabaseManagementUI.Models.DatabaseStructure;
+using DatabaseManagementUI.Properties;
 namespace DatabaseManagementUI.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
@@ -46,7 +47,7 @@ namespace DatabaseManagementUI.ViewModels
 
         public MainWindowViewModel()
         {
-            Models.SQL.ProcessStart(@".\XAMPP\mysql_start.bat"); // TODO: Add the ConfigHandler property responsible for this here / Make it dynamic
+            Models.SQL.ProcessStart(@Settings.Default.MysqlServerExecutableLocation); // TODO: Add the ConfigHandler property responsible for this here / Make it dynamic
         }
         public void DatabaseModelConverter(string ConnectionStringToServer,int ServerType = 1)
         {

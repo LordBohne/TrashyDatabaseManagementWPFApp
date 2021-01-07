@@ -20,10 +20,29 @@
             <RowDefinition Height="0.9*"/>
         </Grid.RowDefinitions>
 
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.8*"/>
+                <RowDefinition Height="0.1*"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0" Grid.Row="1" Click="SQLQueryPageButton_Click">
+                <Image Source="Ressources/SQL.png"/>
+            </Button>
+            <Button Grid.Column="1" Grid.Row="1" Click="SettingsPageButton_Click">
+                <TextBlock Text="SETTINGS PAGE" TextWrapping="Wrap"/>
+            </Button>
+        </Grid>
         <!--#region Buttons to navigate to diffrent pages-->
-        <Button Width="25" Height="25" Click="SQLStatementButton_Click">
-            <Image Source="Ressources/SQL.png"/>
-        </Button>
+        
         <!--#endregion-->
 
         <!--<Frame Grid.Row="1" Content="{Binding DatabaseStructureTreeView}">

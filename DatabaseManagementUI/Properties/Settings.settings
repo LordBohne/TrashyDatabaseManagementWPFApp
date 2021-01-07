@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DatabaseManagementUI.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="MysqlServerExecutableLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">".\XAMPP\mysql_start.bat"</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
