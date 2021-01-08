@@ -9,6 +9,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using DatabaseManagementUI.Models.DatabaseStructure;
 using DatabaseManagementUI.Properties;
+using Microsoft.Win32;
+
 namespace DatabaseManagementUI.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
@@ -47,7 +49,29 @@ namespace DatabaseManagementUI.ViewModels
 
         public MainWindowViewModel()
         {
-            Models.SQL.ProcessStart(@Settings.Default.MysqlServerExecutableLocation); // TODO: Add the ConfigHandler property responsible for this here / Make it dynamic
+            try
+            {
+                Models.SQL.ProcessStart(@Settings.Default.MysqlServerExecutableLocation); // TODO: Add the ConfigHandler property responsible for this here / Make it dynamic
+
+            }
+            catch (Win32Exception)
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                MessageBox.Show("The application couldn't start the mysql server. Please navigate to the executable of the mysql server");
+                openFileDialog.ShowDialog();
+                Properties.Settings.Default.MysqlServerExecutableLocation = openFileDialog.FileName;
+                Properties.Settings.Default.Save();
+                Models.SQL.ProcessStart(@Settings.Default.MysqlServerExecutableLocation);
+            }
+            catch (System.InvalidOperationException)
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                MessageBox.Show("The application couldn't start the mysql server. Please navigate to the executable of the mysql server");
+                openFileDialog.ShowDialog();
+                Properties.Settings.Default.MysqlServerExecutableLocation = openFileDialog.FileName;
+                Properties.Settings.Default.Save();
+                Models.SQL.ProcessStart(@Settings.Default.MysqlServerExecutableLocation);
+            }
         }
         public void DatabaseModelConverter(string ConnectionStringToServer,int ServerType = 1)
         {

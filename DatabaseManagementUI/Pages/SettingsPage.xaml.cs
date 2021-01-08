@@ -25,9 +25,14 @@ namespace DatabaseManagementUI.Pages
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SaveSettingsButton_Click(object sender, RoutedEventArgs e)
         {
+            if (MysqlExePathTextBox.Text != "" || MysqlExePathTextBox.Text != string.Empty || MysqlExePathTextBox != null)
+            {
+                Properties.Settings.Default.MysqlServerExecutableLocation = MysqlExePathTextBox.Text;
+            }
 
+            Properties.Settings.Default.Save();
         }
     }
 }

@@ -37,10 +37,10 @@
                 </TextBlock>
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Vertical">
-                <TextBox x:Name="MysqlExePath"></TextBox>
+                <TextBox x:Name="MysqlExePathTextBox"/>
             </StackPanel>
             <Button Grid.Column="3" Width="100" Content="Save" HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                    Click="Button_Click"
+                    Click="SaveSettingsButton_Click"
                     />
 
         </Grid>
