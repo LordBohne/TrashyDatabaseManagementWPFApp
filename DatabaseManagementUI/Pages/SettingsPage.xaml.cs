@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,12 +28,15 @@ namespace DatabaseManagementUI.Pages
 
         private void SaveSettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MysqlExePathTextBox.Text != "" || MysqlExePathTextBox.Text != string.Empty || MysqlExePathTextBox != null)
-            {
-                Properties.Settings.Default.MysqlServerExecutableLocation = MysqlExePathTextBox.Text;
-            }
-
             Properties.Settings.Default.Save();
+        }
+
+        private void OpenExplorerButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
+            ViewModels.SettingsPageViewModel settingsPageViewModel = (ViewModels.SettingsPageViewModel)this.DataContext;
+            settingsPageViewModel.MySQLServerExecutablePath = openFileDialog.FileName;
         }
     }
 }

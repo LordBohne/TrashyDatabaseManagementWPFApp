@@ -16,21 +16,7 @@ namespace DatabaseManagementUI.ViewModels
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
-        private TreeView databaseStructureTreeView;
-        public TreeView DatabaseStructureTreeView
-        {
-            get
-            {
-                return databaseStructureTreeView;
-            }
-            set
-            {
-                if (value == databaseStructureTreeView)
-                    return;
-                databaseStructureTreeView = value;
-                PropertyChanged(this, new PropertyChangedEventArgs(nameof(DatabaseStructureTreeView)));
-            }
-        }
+        
         private ObservableCollection<DatabaseModel> databaseStructuree;
         public ObservableCollection<DatabaseModel> DatabaseStructuree
         {

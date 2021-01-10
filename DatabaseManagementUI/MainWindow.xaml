@@ -10,6 +10,9 @@
         mc:Ignorable="d"
         x:Name="SimpleDMSMainWindow"
         Title="Simple DMS" Height="450" Width="800">
+    <Window.DataContext>
+        <ViewModels:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid Background="#121212">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.2*"/>
