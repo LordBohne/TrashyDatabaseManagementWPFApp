@@ -36,7 +36,7 @@ namespace DatabaseManagementUI.Pages
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.ShowDialog();
             ViewModels.SettingsPageViewModel settingsPageViewModel = (ViewModels.SettingsPageViewModel)this.DataContext;
-            settingsPageViewModel.MySQLServerExecutablePath = openFileDialog.FileName;
+            settingsPageViewModel.MySQLServerExecutablePath = openFileDialog.FileName; // TODO: Make this dynamic
         }
     }
 }

@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DatabaseManagementUI.Pages"
       xmlns:ViewModels="clr-namespace:DatabaseManagementUI.ViewModels"
+      xmlns:Settings="clr-namespace:DatabaseManagementUI.Properties"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SettingsPage">
@@ -38,14 +39,31 @@
                     The path to the Mysql executable. <LineBreak/>
                     Example: C:/XAMPP/mysql_start.bat
                 </TextBlock>
+                <TextBlock Text="Server location" Margin="0 10 0 0"/>
+                <TextBlock Margin="10 5 0 0">
+                    The location of the Server <LineBreak/>
+                    on which the databases are located <LineBreak/>
+                    Example: localhost or 127.0.0.1
+                </TextBlock>
+                <TextBlock Text="Username" Margin="0 10 0 0"/>
+                <TextBlock Margin="10 5 0 0">
+                    The Username used to connect<LineBreak/>
+                    to the specified Server
+                </TextBlock>
+                <TextBlock Text="Password" Margin="0 10 0 0"/>
+                <TextBlock Margin="10 5 0 0">
+                    The password used to connect<LineBreak/>
+                    to the specified Server
+                </TextBlock>
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock x:Name="MysqlExePathTextBlock" Text="{Binding MySQLServerExecutablePath}" Margin="0 0 5 0" TextWrapping="Wrap" MaxWidth="100"/>
+                    <TextBlock x:Name="MysqlExePathTextBlock" Text="{Binding  Source={x:Static Settings:Settings.Default}, Path=MysqlServerExecutableLocation}" Margin="0 0 5 0" TextWrapping="Wrap" MaxWidth="100"/>
                     <Button Content="Search" Click="OpenExplorerButton_Click"/>
                 </StackPanel>
-                
-                
+                <TextBox x:Name="ServerLocationTextBox" Margin="0 50 0 0"/> <!--TODO: Make this a grid so that it works without the margin-->
+                <TextBox x:Name="UsernameTextBox" Margin="0 50 0 0"/>
+                <TextBox x:Name="PasswordTextBox" Margin="0 50 0 0"/>
             </StackPanel>
             <Button Grid.Column="3" Width="100" Content="Save" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                     Click="SaveSettingsButton_Click"
