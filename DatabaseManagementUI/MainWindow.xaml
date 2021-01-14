@@ -6,10 +6,9 @@
         xmlns:local="clr-namespace:DatabaseManagementUI"
         xmlns:ViewModels="clr-namespace:DatabaseManagementUI.ViewModels"
         xmlns:Models="clr-namespace:DatabaseManagementUI.Models.DatabaseStructure"
-    
-        mc:Ignorable="d"
+        xmlns:Settings="clr-namespace:DatabaseManagementUI.Properties"
         x:Name="SimpleDMSMainWindow"
-        Title="Simple DMS" Height="450" Width="800">
+        Title="Simple DMS" Height="{Binding  Source={x:Static Settings:Settings.Default}, Path=WindowHeight}" Width="{Binding  Source={x:Static Settings:Settings.Default}, Path=WindowWidth}">
     <Window.DataContext>
         <ViewModels:MainWindowViewModel/>
     </Window.DataContext>
@@ -51,7 +50,7 @@
         <!--<Frame Grid.Row="1" Content="{Binding DatabaseStructureTreeView}">
             
         </Frame>-->
-        <TreeView x:Name="DatabaseStructureTreeView" Grid.Row="1" ItemsSource="{Binding DatabaseStructuree}" SelectedItemChanged="DatabaseStructureTreeView_SelectedItemChanged">
+        <TreeView x:Name="DatabaseStructureTreeView" Grid.Row="1" ItemsSource="{Binding DatabaseStructuree}" SelectedItemChanged="DatabaseStructureTreeView_SelectedItemChanged" >
             <TreeView.Resources>
                 <HierarchicalDataTemplate DataType="{x:Type Models:DatabaseModel}" ItemsSource="{Binding Tables}">
                     <TextBlock Text="{Binding Path=DatabaseName}"/>

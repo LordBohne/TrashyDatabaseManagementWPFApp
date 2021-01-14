@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using DatabaseManagementUI.Properties;
 
 namespace DatabaseManagementUI
 {
@@ -7,5 +8,6 @@ namespace DatabaseManagementUI
     /// </summary>
     public partial class App : Application
     {
+       
     }
 }

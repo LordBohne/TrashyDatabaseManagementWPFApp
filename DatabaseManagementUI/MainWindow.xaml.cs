@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using DatabaseManagementUI.Properties;
 
 namespace DatabaseManagementUI
 {
@@ -35,8 +36,6 @@ namespace DatabaseManagementUI
         {
             Page.Content = new Pages.SettingsPage();
         }
-
-
 
         //private void ExistingDatabase_Click(object sender, RoutedEventArgs e)
         //{
