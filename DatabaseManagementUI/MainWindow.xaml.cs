@@ -15,7 +15,7 @@ namespace DatabaseManagementUI
         {
             InitializeComponent();
             var TreeView = new ViewModels.MainWindowViewModel();
-            TreeView.DatabaseModelConverter(Models.DatabaseConnector.GenerateMySQLConnectionString("localhost", "root"));
+            TreeView.DatabaseModelConverter(Models.DatabaseConnector.GenerateMySQLConnectionString(Settings.Default.ServerLocation, Settings.Default.Username,Password:Settings.Default.Password));
             this.DataContext = TreeView;
             
         }
@@ -35,6 +35,12 @@ namespace DatabaseManagementUI
         private void SettingsPageButton_Click(object sender, RoutedEventArgs e)
         {
             Page.Content = new Pages.SettingsPage();
+        }
+
+        private void SimpleDMSMainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Settings.Default.WindowHeight = this.ActualHeight;
+            Settings.Default.WindowWidth = this.ActualWidth;
         }
 
         //private void ExistingDatabase_Click(object sender, RoutedEventArgs e)

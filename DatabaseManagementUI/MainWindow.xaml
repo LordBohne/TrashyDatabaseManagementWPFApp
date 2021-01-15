@@ -8,7 +8,9 @@
         xmlns:Models="clr-namespace:DatabaseManagementUI.Models.DatabaseStructure"
         xmlns:Settings="clr-namespace:DatabaseManagementUI.Properties"
         x:Name="SimpleDMSMainWindow"
-        Title="Simple DMS" Height="{Binding  Source={x:Static Settings:Settings.Default}, Path=WindowHeight}" Width="{Binding  Source={x:Static Settings:Settings.Default}, Path=WindowWidth}">
+        Closing="SimpleDMSMainWindow_Closing"
+        Title="Simple DMS" Height="{Binding  Source={x:Static Settings:Settings.Default}, Path=WindowHeight}" Width="{Binding  Source={x:Static Settings:Settings.Default}, Path=WindowWidth}"
+        >
     <Window.DataContext>
         <ViewModels:MainWindowViewModel/>
     </Window.DataContext>

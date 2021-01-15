@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using DatabaseManagementUI.Properties;
 
 namespace DatabaseManagementUI
@@ -8,6 +9,9 @@ namespace DatabaseManagementUI
     /// </summary>
     public partial class App : Application
     {
-       
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            Settings.Default.Save();
+        }
     }
 }

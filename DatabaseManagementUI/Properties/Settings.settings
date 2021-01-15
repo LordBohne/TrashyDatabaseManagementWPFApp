@@ -6,18 +6,18 @@
       <Value Profile="(Default)">".\XAMPP\mysql_start.bat"</Value>
     </Setting>
     <Setting Name="ServerLocation" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">localhost</Value>
     </Setting>
     <Setting Name="Username" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">root</Value>
     </Setting>
     <Setting Name="Password" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="WindowHeight" Type="System.Int32" Scope="Application">
+    <Setting Name="WindowHeight" Type="System.Double" Scope="User">
       <Value Profile="(Default)">720</Value>
     </Setting>
-    <Setting Name="WindowWidth" Type="System.Int32" Scope="Application">
+    <Setting Name="WindowWidth" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1280</Value>
     </Setting>
   </Settings>

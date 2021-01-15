@@ -25,7 +25,7 @@ namespace DatabaseManagementUI
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void FirstStartSaveButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = new MainWindow();
             App.Current.MainWindow = main;

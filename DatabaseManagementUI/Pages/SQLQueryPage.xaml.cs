@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using DatabaseManagementUI.Properties;
 
 namespace DatabaseManagementUI.Pages
 {
@@ -16,7 +17,7 @@ namespace DatabaseManagementUI.Pages
         private void SendSQLButton_Click(object sender, RoutedEventArgs e)
         {
             //https://www.google.com/search?client=firefox-b-d&q=datagrid+bind+to+datatable
-            ViewModels.SQLQueryViewModel sQLQueryViewModel = new ViewModels.SQLQueryViewModel("localhost", "root", $"{ViewModels.SQLQueryViewModel.CurrentDatabase}");
+            ViewModels.SQLQueryViewModel sQLQueryViewModel = new ViewModels.SQLQueryViewModel(Settings.Default.ServerLocation, Settings.Default.Username, $"{ViewModels.SQLQueryViewModel.CurrentDatabase}", Settings.Default.Password);
             this.DataContext = sQLQueryViewModel;
             sQLQueryViewModel.ExecuteAndSetQuery(SQLInput.Text);
         }
