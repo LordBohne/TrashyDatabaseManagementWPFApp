@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using DatabaseManagementUI.Properties;
-
+using DatabaseManagementUI.Models.DatabaseStructure;
 namespace DatabaseManagementUI
 {
     /// <summary>
@@ -28,8 +28,17 @@ namespace DatabaseManagementUI
         private void DatabaseStructureTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             var test = (TreeView)sender;
-            var test2 = (Models.DatabaseStructure.DatabaseModel)test.SelectedItem; // TODO: Add databasenames to all models so that the same approach can be used everywhere
-            ViewModels.SQLQueryViewModel.CurrentDatabase = test2.DatabaseName;
+            if (test.SelectedItem is DatabaseModel)
+            {
+                var test2 = (Models.DatabaseStructure.DatabaseModel)test.SelectedItem;
+                ViewModels.SQLQueryViewModel.CurrentDatabase = test2.DatabaseName;
+            }
+            else if (test.SelectedItem is DataTableModel) // TODO: Rename DataTableModel to TableModel
+            {
+                var test2 = (Models.DatabaseStructure.DataTableModel)test.SelectedItem;
+                ViewModels.SQLQueryViewModel.CurrentDatabase = test2.DatabaseName; // TODO fix the crash that occures when selecting a field
+            }
+            
         }
 
         private void SettingsPageButton_Click(object sender, RoutedEventArgs e)

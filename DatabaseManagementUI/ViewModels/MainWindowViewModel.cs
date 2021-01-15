@@ -74,13 +74,13 @@ namespace DatabaseManagementUI.ViewModels
                 var MySQLTables = DatabaseStructure.GetMySQLTables(Database);
                 foreach (string table in MySQLTables)
                 {
-                    var TableItem = new DataTableModel
+                    var TableItem = new DataTableModel(DatabaseItem)
                     {
                         TableName = table,
                         TableFields = new List<DataFieldModel>()
                     };
 
-                    var TableFields = DatabaseStructure.GetTableFields(table, Database);
+                    var TableFields = DatabaseStructure.GetTableFields(TableItem,table, Database);
                     TableItem.TableFields = TableFields;
                     DatabaseItem.Tables.Add(TableItem);
                 }
