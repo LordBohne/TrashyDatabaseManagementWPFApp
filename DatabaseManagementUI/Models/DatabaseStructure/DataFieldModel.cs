@@ -2,6 +2,7 @@
 {
     public class DataFieldModel
     {
+        public string DatabaseName { get; set; }
         public string FieldName { get; set; }
         public string Type { get; set; }
         public string Null { get; set; }

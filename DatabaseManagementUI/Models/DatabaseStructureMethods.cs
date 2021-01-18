@@ -76,6 +76,7 @@ namespace DatabaseManagementUI.Models
             {
                 TableFields.Add(new DataFieldModel()
                 {
+                    DatabaseName = DatabaseName,
                     FieldName = rdr[0].ToString(),
                     Type = rdr[1].ToString(),
                     Null = rdr[2].ToString(),

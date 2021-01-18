@@ -38,6 +38,11 @@ namespace DatabaseManagementUI
                 var test2 = (Models.DatabaseStructure.DataTableModel)test.SelectedItem;
                 ViewModels.SQLQueryViewModel.CurrentDatabase = test2.DatabaseName; // TODO fix the crash that occures when selecting a field
             }
+            else if(test.SelectedItem is DataFieldModel)
+            {
+                var test2 = (Models.DatabaseStructure.DataFieldModel)test.SelectedItem;
+                ViewModels.SQLQueryViewModel.CurrentDatabase = test2.DatabaseName;
+            }
             
         }
 
