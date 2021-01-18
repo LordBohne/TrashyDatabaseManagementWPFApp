@@ -33,14 +33,14 @@ namespace DatabaseManagementUI
                 var test2 = (Models.DatabaseStructure.DatabaseModel)test.SelectedItem;
                 ViewModels.SQLQueryViewModel.CurrentDatabase = test2.DatabaseName;
             }
-            else if (test.SelectedItem is DataTableModel) // TODO: Rename DataTableModel to TableModel
+            else if (test.SelectedItem is TableModel)
             {
-                var test2 = (Models.DatabaseStructure.DataTableModel)test.SelectedItem;
-                ViewModels.SQLQueryViewModel.CurrentDatabase = test2.DatabaseName; // TODO fix the crash that occures when selecting a field
+                var test2 = (Models.DatabaseStructure.TableModel)test.SelectedItem;
+                ViewModels.SQLQueryViewModel.CurrentDatabase = test2.DatabaseName;
             }
-            else if(test.SelectedItem is DataFieldModel)
+            else if(test.SelectedItem is FieldModel)
             {
-                var test2 = (Models.DatabaseStructure.DataFieldModel)test.SelectedItem;
+                var test2 = (Models.DatabaseStructure.FieldModel)test.SelectedItem;
                 ViewModels.SQLQueryViewModel.CurrentDatabase = test2.DatabaseName;
             }
             

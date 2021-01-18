@@ -57,10 +57,10 @@
                 <HierarchicalDataTemplate DataType="{x:Type Models:DatabaseModel}" ItemsSource="{Binding Tables}">
                     <TextBlock Text="{Binding Path=DatabaseName}"/>
                 </HierarchicalDataTemplate>
-                <HierarchicalDataTemplate DataType="{x:Type Models:DataTableModel}" ItemsSource="{Binding TableFields}">
+                <HierarchicalDataTemplate DataType="{x:Type Models:TableModel}" ItemsSource="{Binding TableFields}">
                     <TextBlock Text="{Binding Path=TableName}"/>
                 </HierarchicalDataTemplate>
-                <DataTemplate DataType="{x:Type Models:DataFieldModel}" >
+                <DataTemplate DataType="{x:Type Models:FieldModel}" >
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="{Binding Path=FieldName}"/>
                         <TextBlock Text="{Binding Path=Type}"/>

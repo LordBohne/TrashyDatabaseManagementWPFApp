@@ -65,16 +65,16 @@ namespace DatabaseManagementUI.Models
             return Tables;
         }
 
-        public List<DataFieldModel> GetTableFields(DataTableModel sender, string TableName, string DatabaseName)
+        public List<FieldModel> GetTableFields(TableModel sender, string TableName, string DatabaseName)
         {
-            var TableFields = new List<DataFieldModel>();
+            var TableFields = new List<FieldModel>();
             //MySqlConn = new MySqlConnection(GenerateMySQLConnectionString("localhost", "root", DatabaseName)); // TODO: Make it dynamic
             //MySqlConn.Open();
             var sqlCommand = new MySqlCommand($"DESCRIBE {DatabaseName}.`{TableName}`;", MySqlConn);
             MySqlDataReader rdr = sqlCommand.ExecuteReader();
             while (rdr.Read())
             {
-                TableFields.Add(new DataFieldModel()
+                TableFields.Add(new FieldModel()
                 {
                     DatabaseName = DatabaseName,
                     FieldName = rdr[0].ToString(),

@@ -37,7 +37,7 @@ namespace DatabaseManagementUI.ViewModels
         {
             //try
             //{
-                Models.SQL.ProcessStart(@Settings.Default.MysqlServerExecutableLocation); // TODO: Add the ConfigHandler property responsible for this here / Make it dynamic
+                Models.SQL.ProcessStart(@Settings.Default.MysqlServerExecutableLocation); 
 
             //}
             //catch (Win32Exception)
@@ -69,15 +69,15 @@ namespace DatabaseManagementUI.ViewModels
                 var DatabaseItem = new DatabaseModel
                 {
                     DatabaseName = Database,
-                    Tables = new List<DataTableModel>()
+                    Tables = new List<TableModel>()
                 };
                 var MySQLTables = DatabaseStructure.GetMySQLTables(Database);
                 foreach (string table in MySQLTables)
                 {
-                    var TableItem = new DataTableModel(DatabaseItem)
+                    var TableItem = new TableModel(DatabaseItem)
                     {
                         TableName = table,
-                        TableFields = new List<DataFieldModel>()
+                        TableFields = new List<FieldModel>()
                     };
 
                     var TableFields = DatabaseStructure.GetTableFields(TableItem,table, Database);
