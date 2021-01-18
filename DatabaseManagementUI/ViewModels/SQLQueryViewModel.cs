@@ -6,7 +6,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using DatabaseManagementUI;
+using DatabaseManagementUI.Properties;
+
 namespace DatabaseManagementUI.ViewModels
 {
     public class SQLQueryViewModel : INotifyPropertyChanged
@@ -35,7 +38,16 @@ namespace DatabaseManagementUI.ViewModels
         public static string CurrentDatabase { get; set; }
         public SQLQueryViewModel(string Servername, string Username, string Database=null, string Password=null)
         {
-            Connector = new Models.DatabaseConnector(Models.DatabaseConnector.GenerateMySQLConnectionString(Servername, Username, Database, Password)); // TODO: Change the Databaseconnector so that it only needs to be instantiated once e.g. it can change its connected database while running
+            try
+            {
+                Connector = new Models.DatabaseConnector(Models.DatabaseConnector.GenerateMySQLConnectionString(Servername, Username, Database, Password)); // TODO: Change the Databaseconnector so that it only needs to be instantiated once e.g. it can change its connected database while running
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message+ "\n Resetting settings");
+                Settings.Default.Reset();
+            }
+            
         }
         public void ExecuteAndSetQuery(string SQL)
         {

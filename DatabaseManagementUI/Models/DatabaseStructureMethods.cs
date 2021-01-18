@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using DatabaseManagementUI.Models.DatabaseStructure;
 using System.Windows;
+using DatabaseManagementUI.Properties;
 
 namespace DatabaseManagementUI.Models
 {
@@ -30,7 +31,8 @@ namespace DatabaseManagementUI.Models
                     }
                     catch (MySql.Data.MySqlClient.MySqlException e)
                     {
-                        MessageBox.Show(e.Message);
+                        MessageBox.Show(e.Message + "\n resetting settings");
+                        Settings.Default.Reset();
                     }
                     
                     break;

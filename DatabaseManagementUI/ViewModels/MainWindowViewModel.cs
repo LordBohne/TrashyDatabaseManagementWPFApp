@@ -44,11 +44,13 @@ namespace DatabaseManagementUI.ViewModels
             }
             catch (Win32Exception e)
             {
-                MessageBox.Show("The application couldn't start the mysql server. Please navigate to the executable of the mysql server");
+                MessageBox.Show("The application couldn't start the mysql server. Please navigate to the executable of the mysql server \nResetting settings");
+                Settings.Default.Reset();
             }
             catch (System.InvalidOperationException)
             {
-                MessageBox.Show("The application couldn't start the mysql server. Please navigate to the executable of the mysql server");
+                MessageBox.Show("The application couldn't start the mysql server. Please navigate to the executable of the mysql server \nResetting settings");
+                Settings.Default.Reset();
             }
         }
         
