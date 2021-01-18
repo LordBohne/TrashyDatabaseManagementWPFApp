@@ -37,7 +37,6 @@ namespace DatabaseManagementUI.Pages
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.ShowDialog();
             Settings.Default.MysqlServerExecutableLocation = openFileDialog.FileName;
-
         }
     }
 }
