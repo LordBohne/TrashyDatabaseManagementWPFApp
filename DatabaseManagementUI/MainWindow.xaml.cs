@@ -59,19 +59,6 @@ namespace DatabaseManagementUI
             Settings.Default.WindowHeight = this.ActualHeight;
             Settings.Default.WindowWidth = this.ActualWidth;
         }
-        }
-
-        private void SettingsPageButton_Click(object sender, RoutedEventArgs e)
-        {
-            Page.Content = new Pages.SettingsPage();
-        }
-
-        private void SimpleDMSMainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Settings.Default.WindowHeight = this.ActualHeight;
-            Settings.Default.WindowWidth = this.ActualWidth;
-        }
-
         //private void ImportButton_Click(object sender, RoutedEventArgs e)
         //{
         //    var FileDialog = new OpenFileDialog();

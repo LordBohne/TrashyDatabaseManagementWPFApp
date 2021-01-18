@@ -12,6 +12,7 @@ namespace DatabaseManagementUI
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             Settings.Default.Save();
+            Models.ProcessUtil.ProcessStop();
         }
     }
 }

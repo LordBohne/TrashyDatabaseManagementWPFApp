@@ -5,8 +5,9 @@ using System.Diagnostics;
 //namespace DatabaseManagementUI.Models.SQL
 namespace DatabaseManagementUI.Models
 {
-    public class SQL
+    public class ProcessUtil
     {
+        static Process SQLServer { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -15,18 +16,19 @@ namespace DatabaseManagementUI.Models
         {
             //Simple-DMS\DatabaseManagementUI\XAMPP\mysql_start.bat
 
-            Process.Start(processStart);
+            SQLServer = Process.Start(processStart);
+
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="processStop"></param>
-        public static void ProcessStop(string processStop)
+        public static void ProcessStop()
         {
             //Simple-DMS\DatabaseManagementUI\XAMPP\mysql_stop.bat
-
-            Process.Start(processStop);
+            SQLServer.Kill();
+            SQLServer.Dispose();
         }
     }
 }

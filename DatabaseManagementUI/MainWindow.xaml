@@ -11,9 +11,6 @@
         Closing="SimpleDMSMainWindow_Closing"
         Title="Simple DMS" Height="{Binding  Source={x:Static Settings:Settings.Default}, Path=WindowHeight}" Width="{Binding  Source={x:Static Settings:Settings.Default}, Path=WindowWidth}"
         >
-    <Window.DataContext>
-        <ViewModels:MainWindowViewModel/>
-    </Window.DataContext>
     <Grid Background="#121212">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.2*"/>
