@@ -59,7 +59,6 @@ namespace DatabaseManagementUI
             Settings.Default.WindowHeight = this.ActualHeight;
             Settings.Default.WindowWidth = this.ActualWidth;
         }
-
         //private void ImportButton_Click(object sender, RoutedEventArgs e)
         //{
         //    var FileDialog = new OpenFileDialog();
