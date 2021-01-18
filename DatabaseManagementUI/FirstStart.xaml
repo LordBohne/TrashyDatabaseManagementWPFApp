@@ -67,7 +67,7 @@
                     You only need this if you plan on using localhost
             </TextBlock>
         </StackPanel>
-        <TextBox Grid.Column="2" Grid.Row="3" x:Name="ServerExecutableLocationTextBox" Height="20"/>
+        <Button Content="open" Grid.Column="2" Grid.Row="3" Click="MysqlExePathButton_Click"/>
         <Button Content="Save" Click="FirstStartSaveButton_Click" Grid.Column="3" Grid.Row="9"/>
     </Grid>
 </Window>

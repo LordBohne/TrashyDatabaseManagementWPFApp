@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using DatabaseManagementUI.Properties;
 namespace DatabaseManagementUI.Pages
 {
     /// <summary>
@@ -35,8 +35,7 @@ namespace DatabaseManagementUI.Pages
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.ShowDialog();
-            ViewModels.SettingsPageViewModel settingsPageViewModel = (ViewModels.SettingsPageViewModel)this.DataContext;
-            settingsPageViewModel.MySQLServerExecutablePath = openFileDialog.FileName; // TODO: Make this dynamic
+            Settings.Default.MysqlServerExecutableLocation = openFileDialog.FileName;
         }
     }
 }

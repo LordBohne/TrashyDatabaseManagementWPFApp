@@ -39,10 +39,10 @@ namespace DatabaseManagementUI.ViewModels
             {
                 if (Settings.Default.MysqlServerExecutableLocation != "")
                 {
-                    Models.SQL.ProcessStart(@Settings.Default.MysqlServerExecutableLocation);
+                    Models.ProcessUtil.ProcessStart(@Settings.Default.MysqlServerExecutableLocation);
                 }
             }
-            catch (Win32Exception)
+            catch (Win32Exception e)
             {
                 MessageBox.Show("The application couldn't start the mysql server. Please navigate to the executable of the mysql server");
             }
