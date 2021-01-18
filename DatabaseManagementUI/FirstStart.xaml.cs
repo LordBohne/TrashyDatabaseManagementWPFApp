@@ -41,8 +41,6 @@ namespace DatabaseManagementUI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Debugger.IsAttached)
-                Settings.Default.Reset();
             if (Settings.Default.ServerLocation != "" && Settings.Default.Username != "")
             {
                 MainWindow main = new MainWindow();
