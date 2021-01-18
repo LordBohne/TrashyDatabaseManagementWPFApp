@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DatabaseManagementUI.Models
@@ -43,14 +44,28 @@ namespace DatabaseManagementUI.Models
             }
 
         }
+        //public string CreateTable(string Query,string delimiter)
+        //{
+        //    var SQLStatements = Query.Split('\n');
+        //    var CreateTable = SQLStatements.Where(Statement => Statement.ToLower().Contains("create table")).ToList();
+        //    MySqlConn = new MySqlConnection(this.ConnectionString);
+        //    MySqlConn.Open();
+        //    var Command = new MySqlCommand(CreateTable[0], MySqlConn);
+        //    Command.ExecuteNonQuery();
+        //    return "";
+        //}
         public int ExecuteScript(string Script, string Delimiter = null)
         {
+            MySqlConn = new MySqlConnection(this.ConnectionString);
+            MySqlConn.Open();
                 MySqlScript sqlScript = new MySqlScript(MySqlConn, Script);
                 if (Delimiter != null)
                 {
                     sqlScript.Delimiter = Delimiter;
                 }
-                return sqlScript.Execute();
+            var IntexecutedQueries = sqlScript.Execute();
+            MySqlConn.Close();
+            return IntexecutedQueries;
         }
         public async Task<DataTable> Query(string SQL, int CommandTimeout=30)
         {

@@ -4,6 +4,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using DatabaseManagementUI.Properties;
 using DatabaseManagementUI.Models.DatabaseStructure;
+using Microsoft.Win32;
+using System.IO;
+
 namespace DatabaseManagementUI
 {
     /// <summary>
@@ -56,6 +59,16 @@ namespace DatabaseManagementUI
             Settings.Default.WindowHeight = this.ActualHeight;
             Settings.Default.WindowWidth = this.ActualWidth;
         }
+
+        //private void ImportButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var FileDialog = new OpenFileDialog();
+        //    FileDialog.Filter = "sql files (*.sql)|*.sql";
+        //    FileDialog.ShowDialog();
+        //    var Connector = new Models.DatabaseConnector(Models.DatabaseConnector.GenerateMySQLConnectionString(Settings.Default.ServerLocation, Settings.Default.Username,ViewModels.SQLQueryViewModel.CurrentDatabase));
+        //    var Script = File.ReadAllText(FileDialog.FileName);
+        //    Connector.CreateTable(Script,";");
+        //}
 
         //private void ExistingDatabase_Click(object sender, RoutedEventArgs e)
         //{
