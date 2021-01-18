@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using DatabaseManagementUI.Models.DatabaseStructure;
+using System.Windows;
 
 namespace DatabaseManagementUI.Models
 {
@@ -23,7 +24,15 @@ namespace DatabaseManagementUI.Models
             {
                 case 1:
                     MySqlConn = new MySqlConnection(ConnectionStringToServer);
-                    MySqlConn.Open();
+                    try
+                    {
+                        MySqlConn.Open();
+                    }
+                    catch (MySql.Data.MySqlClient.MySqlException e)
+                    {
+                        MessageBox.Show(e.Message);
+                    }
+                    
                     break;
                 default:
                     break;
