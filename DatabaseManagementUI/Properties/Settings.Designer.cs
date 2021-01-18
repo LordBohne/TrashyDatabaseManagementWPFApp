@@ -25,7 +25,7 @@ namespace DatabaseManagementUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\".\\XAMPP\\mysql_start.bat\"")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string MysqlServerExecutableLocation {
             get {
                 return ((string)(this["MysqlServerExecutableLocation"]));
@@ -37,7 +37,7 @@ namespace DatabaseManagementUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string ServerLocation {
             get {
                 return ((string)(this["ServerLocation"]));
@@ -49,7 +49,7 @@ namespace DatabaseManagementUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("root")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Username {
             get {
                 return ((string)(this["Username"]));
