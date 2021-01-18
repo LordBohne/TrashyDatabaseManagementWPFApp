@@ -8,26 +8,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using DatabaseManagementUI.Models.DatabaseStructure;
+using DatabaseManagementUI.Properties;
+using Microsoft.Win32;
+
 namespace DatabaseManagementUI.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
-        private TreeView databaseStructureTreeView;
-        public TreeView DatabaseStructureTreeView
-        {
-            get
-            {
-                return databaseStructureTreeView;
-            }
-            set
-            {
-                if (value == databaseStructureTreeView)
-                    return;
-                databaseStructureTreeView = value;
-                PropertyChanged(this, new PropertyChangedEventArgs(nameof(DatabaseStructureTreeView)));
-            }
-        }
+        
         private ObservableCollection<DatabaseModel> databaseStructuree;
         public ObservableCollection<DatabaseModel> DatabaseStructuree
         {
@@ -46,7 +35,29 @@ namespace DatabaseManagementUI.ViewModels
 
         public MainWindowViewModel()
         {
-            Models.SQL.ProcessStart(@".\XAMPP\mysql_start.bat"); // TODO: Add the ConfigHandler property responsible for this here / Make it dynamic
+            //try
+            //{
+                Models.SQL.ProcessStart(@Settings.Default.MysqlServerExecutableLocation); 
+
+            //}
+            //catch (Win32Exception)
+            //{
+            //    OpenFileDialog openFileDialog = new OpenFileDialog();
+            //    MessageBox.Show("The application couldn't start the mysql server. Please navigate to the executable of the mysql server");
+            //    openFileDialog.ShowDialog();
+            //    Properties.Settings.Default.MysqlServerExecutableLocation = openFileDialog.FileName;
+            //    Properties.Settings.Default.Save();
+            //    Models.SQL.ProcessStart(@Settings.Default.MysqlServerExecutableLocation);
+            //}
+            //catch (System.InvalidOperationException)
+            //{
+            //    OpenFileDialog openFileDialog = new OpenFileDialog();
+            //    MessageBox.Show("The application couldn't start the mysql server. Please navigate to the executable of the mysql server");
+            //    openFileDialog.ShowDialog();
+            //    Properties.Settings.Default.MysqlServerExecutableLocation = openFileDialog.FileName;
+            //    Properties.Settings.Default.Save();
+            //    Models.SQL.ProcessStart(@Settings.Default.MysqlServerExecutableLocation);
+            //}
         }
         public void DatabaseModelConverter(string ConnectionStringToServer,int ServerType = 1)
         {
@@ -58,18 +69,18 @@ namespace DatabaseManagementUI.ViewModels
                 var DatabaseItem = new DatabaseModel
                 {
                     DatabaseName = Database,
-                    Tables = new List<DataTableModel>()
+                    Tables = new List<TableModel>()
                 };
                 var MySQLTables = DatabaseStructure.GetMySQLTables(Database);
                 foreach (string table in MySQLTables)
                 {
-                    var TableItem = new DataTableModel
+                    var TableItem = new TableModel(DatabaseItem)
                     {
                         TableName = table,
-                        TableFields = new List<DataFieldModel>()
+                        TableFields = new List<FieldModel>()
                     };
 
-                    var TableFields = DatabaseStructure.GetTableFields(table, Database);
+                    var TableFields = DatabaseStructure.GetTableFields(TableItem,table, Database);
                     TableItem.TableFields = TableFields;
                     DatabaseItem.Tables.Add(TableItem);
                 }

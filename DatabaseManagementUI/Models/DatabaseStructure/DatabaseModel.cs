@@ -11,6 +11,6 @@ namespace DatabaseManagementUI.Models.DatabaseStructure
     public class DatabaseModel
     {
         public string DatabaseName { get; set; }
-        public List<DataTableModel> Tables { get; set; }
+        public List<TableModel> Tables { get; set; }
     }
 }

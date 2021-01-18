@@ -1,7 +1,8 @@
 ﻿namespace DatabaseManagementUI.Models.DatabaseStructure
 {
-    public class DataFieldModel
+    public class FieldModel
     {
+        public string DatabaseName { get; set; }
         public string FieldName { get; set; }
         public string Type { get; set; }
         public string Null { get; set; }
