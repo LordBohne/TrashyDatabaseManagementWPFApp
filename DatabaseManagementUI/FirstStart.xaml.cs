@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,11 @@ namespace DatabaseManagementUI
 
         private void FirstStartSaveButton_Click(object sender, RoutedEventArgs e)
         {
+            Settings.Default.ServerLocation = ServerLocationTextBox.Text;
+            Settings.Default.Password = PasswordTextBox.Text;
+            Settings.Default.Username = UsernameTextBox.Text;
+            Settings.Default.MysqlServerExecutableLocation = ServerExecutableLocationTextBox.Text;
+            Settings.Default.Save();
             MainWindow main = new MainWindow();
             App.Current.MainWindow = main;
             this.Close();

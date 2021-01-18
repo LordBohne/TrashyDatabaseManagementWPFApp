@@ -59,6 +59,18 @@ namespace DatabaseManagementUI
             Settings.Default.WindowHeight = this.ActualHeight;
             Settings.Default.WindowWidth = this.ActualWidth;
         }
+        }
+
+        private void SettingsPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            Page.Content = new Pages.SettingsPage();
+        }
+
+        private void SimpleDMSMainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Settings.Default.WindowHeight = this.ActualHeight;
+            Settings.Default.WindowWidth = this.ActualWidth;
+        }
 
         //private void ImportButton_Click(object sender, RoutedEventArgs e)
         //{
@@ -70,12 +82,5 @@ namespace DatabaseManagementUI
         //    Connector.CreateTable(Script,";");
         //}
 
-        //private void ExistingDatabase_Click(object sender, RoutedEventArgs e)
-        //{
-        //    SimpleDMSMainWindow.Content = new Page1();
-        //    var tes2t = new Models.DatabaseConnector("server=127.0.0.1;uid=root;pwd=;database=nordwind");
-        //    var test = tes2t.Query("SELECT * FROM Artikel WHERE `Artikel-Nr` = 1").Result;
-        //    tes2t.GetMySQLDatabases();
-        //}
     }
 }
