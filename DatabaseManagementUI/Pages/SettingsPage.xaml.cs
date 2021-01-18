@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DatabaseManagementUI.Properties;
+
 namespace DatabaseManagementUI.Pages
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace DatabaseManagementUI.Pages
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.ShowDialog();
             Settings.Default.MysqlServerExecutableLocation = openFileDialog.FileName;
+
         }
     }
 }

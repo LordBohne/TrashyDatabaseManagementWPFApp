@@ -51,6 +51,7 @@ namespace DatabaseManagementUI.ViewModels
                 MessageBox.Show("The application couldn't start the mysql server. Please navigate to the executable of the mysql server");
             }
         }
+        
         public void DatabaseModelConverter(string ConnectionStringToServer,int ServerType = 1)
         {
             var DatabaseStructure = new Models.DatabaseStructureMethods(ConnectionStringToServer, ServerType);
